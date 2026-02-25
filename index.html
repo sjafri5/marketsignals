@@ -1,0 +1,756 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MarketSignals - See What Smart Money Is Doing</title>
+  <meta name="description" content="Congressional trades, unusual options flow, and dark pool intelligence. One platform. Free congress trade alerts, pro-tier flow signals, elite dark pool reports.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0a0a0f;
+      --bg-card: #12121a;
+      --bg-card-hover: #1a1a26;
+      --border: #1f1f2e;
+      --border-highlight: #2a2a3e;
+      --text: #e4e4e7;
+      --text-muted: #71717a;
+      --text-dim: #52525b;
+      --accent: #3b82f6;
+      --accent-dim: rgba(59, 130, 246, 0.1);
+      --accent-glow: rgba(59, 130, 246, 0.15);
+      --green: #22c55e;
+      --green-dim: rgba(34, 197, 94, 0.1);
+      --red: #ef4444;
+      --red-dim: rgba(239, 68, 68, 0.1);
+      --gold: #eab308;
+      --gold-dim: rgba(234, 179, 8, 0.1);
+      --purple: #a855f7;
+      --purple-dim: rgba(168, 85, 247, 0.1);
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background-image:
+        linear-gradient(rgba(59, 130, 246, 0.02) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(59, 130, 246, 0.02) 1px, transparent 1px);
+      background-size: 60px 60px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; position: relative; z-index: 1; }
+
+    /* Nav */
+    nav {
+      padding: 20px 0;
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      background: rgba(10, 10, 15, 0.9);
+      backdrop-filter: blur(20px);
+      z-index: 100;
+    }
+    nav .container { display: flex; justify-content: space-between; align-items: center; }
+    .logo { font-size: 1.25rem; font-weight: 800; letter-spacing: -0.02em; }
+    .logo span { color: var(--accent); }
+    .nav-cta {
+      background: var(--accent);
+      color: white;
+      padding: 8px 20px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.875rem;
+      transition: opacity 0.2s;
+    }
+    .nav-cta:hover { opacity: 0.9; }
+
+    /* Hero */
+    .hero {
+      padding: 80px 0 60px;
+      text-align: center;
+    }
+    .hero-badge {
+      display: inline-block;
+      padding: 6px 16px;
+      background: var(--accent-dim);
+      border: 1px solid rgba(59, 130, 246, 0.2);
+      border-radius: 100px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--accent);
+      margin-bottom: 24px;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+    .hero h1 {
+      font-size: clamp(2.2rem, 5vw, 3.5rem);
+      font-weight: 800;
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+      margin-bottom: 20px;
+    }
+    .hero h1 .highlight { color: var(--accent); }
+    .hero p {
+      font-size: 1.15rem;
+      color: var(--text-muted);
+      max-width: 600px;
+      margin: 0 auto 36px;
+      line-height: 1.7;
+    }
+
+    /* Signup form */
+    .signup-form {
+      display: flex;
+      gap: 10px;
+      max-width: 460px;
+      margin: 0 auto 16px;
+    }
+    .signup-form input {
+      flex: 1;
+      padding: 14px 18px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      color: var(--text);
+      font-size: 1rem;
+      font-family: inherit;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .signup-form input:focus { border-color: var(--accent); }
+    .signup-form input::placeholder { color: var(--text-dim); }
+    .signup-form button {
+      padding: 14px 28px;
+      background: var(--accent);
+      color: white;
+      border: none;
+      border-radius: 10px;
+      font-size: 1rem;
+      font-weight: 700;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: opacity 0.2s;
+    }
+    .signup-form button:hover { opacity: 0.9; }
+    .signup-form button:disabled { opacity: 0.5; cursor: not-allowed; }
+    .signup-note {
+      font-size: 0.8rem;
+      color: var(--text-dim);
+      text-align: center;
+    }
+    .signup-success {
+      display: none;
+      text-align: center;
+      padding: 16px;
+      background: var(--green-dim);
+      border: 1px solid rgba(34, 197, 94, 0.3);
+      border-radius: 10px;
+      color: var(--green);
+      font-weight: 600;
+      max-width: 460px;
+      margin: 0 auto;
+    }
+
+    /* Live ticker */
+    .live-feed {
+      margin: 60px 0 0;
+      padding: 24px 0;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      overflow: hidden;
+    }
+    .live-feed-label {
+      font-size: 0.7rem;
+      font-weight: 700;
+      color: var(--text-dim);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      text-align: center;
+      margin-bottom: 16px;
+    }
+    .live-feed-label .dot {
+      display: inline-block;
+      width: 6px;
+      height: 6px;
+      background: var(--green);
+      border-radius: 50%;
+      margin-right: 6px;
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
+
+    .ticker-scroll {
+      display: flex;
+      gap: 20px;
+      animation: scroll 40s linear infinite;
+    }
+    @keyframes scroll {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+    .ticker-item {
+      flex-shrink: 0;
+      padding: 10px 18px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.8rem;
+      white-space: nowrap;
+    }
+    .ticker-item .tag {
+      font-size: 0.65rem;
+      font-weight: 700;
+      padding: 2px 6px;
+      border-radius: 4px;
+      margin-right: 8px;
+    }
+    .tag-congress { background: var(--purple-dim); color: var(--purple); }
+    .tag-flow { background: var(--green-dim); color: var(--green); }
+    .tag-darkpool { background: var(--gold-dim); color: var(--gold); }
+    .ticker-item .ticker-sym { font-weight: 700; color: var(--text); margin-right: 6px; }
+    .ticker-item .ticker-detail { color: var(--text-muted); }
+
+    /* Signal types section */
+    .signals {
+      padding: 80px 0;
+    }
+    .signals h2 {
+      font-size: 2rem;
+      font-weight: 800;
+      text-align: center;
+      margin-bottom: 12px;
+      letter-spacing: -0.02em;
+    }
+    .signals .subtitle {
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 1.05rem;
+      margin-bottom: 48px;
+    }
+    .signal-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+    @media (max-width: 768px) { .signal-grid { grid-template-columns: 1fr; } }
+
+    .signal-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 32px 28px;
+      transition: border-color 0.3s, transform 0.2s;
+    }
+    .signal-card:hover {
+      border-color: var(--border-highlight);
+      transform: translateY(-2px);
+    }
+    .signal-card .icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+      margin-bottom: 20px;
+    }
+    .signal-card h3 {
+      font-size: 1.2rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+    .signal-card .tier-badge {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: 4px;
+      margin-bottom: 12px;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+    .signal-card p {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      line-height: 1.7;
+      margin-bottom: 20px;
+    }
+    .signal-card .example {
+      background: rgba(0,0,0,0.3);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 14px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    .card-congress .icon { background: var(--purple-dim); }
+    .card-congress .tier-badge { background: var(--green-dim); color: var(--green); }
+    .card-flow .icon { background: var(--green-dim); }
+    .card-flow .tier-badge { background: var(--accent-dim); color: var(--accent); }
+    .card-darkpool .icon { background: var(--gold-dim); }
+    .card-darkpool .tier-badge { background: var(--gold-dim); color: var(--gold); }
+
+    /* Pricing */
+    .pricing {
+      padding: 80px 0;
+      border-top: 1px solid var(--border);
+    }
+    .pricing h2 {
+      font-size: 2rem;
+      font-weight: 800;
+      text-align: center;
+      margin-bottom: 12px;
+      letter-spacing: -0.02em;
+    }
+    .pricing .subtitle {
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 1.05rem;
+      margin-bottom: 48px;
+    }
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      align-items: start;
+    }
+    @media (max-width: 768px) { .pricing-grid { grid-template-columns: 1fr; } }
+
+    .price-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 32px 28px;
+      position: relative;
+    }
+    .price-card.featured {
+      border-color: var(--accent);
+      box-shadow: 0 0 40px rgba(59, 130, 246, 0.1);
+    }
+    .price-card .popular {
+      position: absolute;
+      top: -12px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--accent);
+      color: white;
+      font-size: 0.7rem;
+      font-weight: 700;
+      padding: 4px 14px;
+      border-radius: 100px;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+    .price-card h3 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+    .price-card .price {
+      font-size: 2.5rem;
+      font-weight: 800;
+      margin: 16px 0 4px;
+      letter-spacing: -0.03em;
+    }
+    .price-card .price span { font-size: 1rem; font-weight: 500; color: var(--text-muted); }
+    .price-card .price-note {
+      font-size: 0.8rem;
+      color: var(--text-dim);
+      margin-bottom: 24px;
+    }
+    .price-card ul {
+      list-style: none;
+      margin-bottom: 28px;
+    }
+    .price-card ul li {
+      padding: 6px 0;
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+    }
+    .price-card ul li::before {
+      content: '\2713';
+      color: var(--green);
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+    .price-card .cta {
+      display: block;
+      width: 100%;
+      padding: 14px;
+      text-align: center;
+      border-radius: 10px;
+      font-weight: 700;
+      font-size: 0.95rem;
+      text-decoration: none;
+      cursor: pointer;
+      border: none;
+      font-family: inherit;
+      transition: opacity 0.2s;
+    }
+    .price-card .cta:hover { opacity: 0.9; }
+    .cta-free { background: var(--bg-card-hover); color: var(--text); border: 1px solid var(--border) !important; }
+    .cta-pro { background: var(--accent); color: white; }
+    .cta-elite { background: linear-gradient(135deg, var(--gold), #f59e0b); color: #000; }
+
+    /* Social proof */
+    .proof {
+      padding: 60px 0;
+      border-top: 1px solid var(--border);
+      text-align: center;
+    }
+    .proof h2 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 32px;
+    }
+    .proof-stats {
+      display: flex;
+      justify-content: center;
+      gap: 60px;
+      flex-wrap: wrap;
+    }
+    .proof-stat .number {
+      font-size: 2.5rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+    }
+    .proof-stat .label {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    /* FAQ */
+    .faq {
+      padding: 80px 0;
+      border-top: 1px solid var(--border);
+    }
+    .faq h2 {
+      font-size: 2rem;
+      font-weight: 800;
+      text-align: center;
+      margin-bottom: 40px;
+    }
+    .faq-list { max-width: 700px; margin: 0 auto; }
+    .faq-item {
+      border-bottom: 1px solid var(--border);
+      padding: 20px 0;
+    }
+    .faq-q {
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .faq-q::after { content: '+'; font-size: 1.3rem; color: var(--text-muted); transition: transform 0.2s; }
+    .faq-item.open .faq-q::after { content: '-'; }
+    .faq-a {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease, padding 0.3s ease;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      line-height: 1.7;
+    }
+    .faq-item.open .faq-a { max-height: 300px; padding-top: 12px; }
+
+    /* Footer */
+    footer {
+      padding: 40px 0;
+      border-top: 1px solid var(--border);
+      text-align: center;
+      color: var(--text-dim);
+      font-size: 0.8rem;
+    }
+    footer a { color: var(--text-muted); text-decoration: none; }
+    footer a:hover { color: var(--text); }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="container">
+    <div class="logo">Market<span>Signals</span></div>
+    <a href="#pricing" class="nav-cta">Get Free Alerts</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="container">
+    <div class="hero-badge">3 intelligence feeds. 1 platform.</div>
+    <h1>See what <span class="highlight">smart money</span><br>is doing before everyone else</h1>
+    <p>Congressional stock trades. Unusual options flow. Dark pool activity. The signals institutions use, delivered to your inbox.</p>
+    <form class="signup-form" id="signupForm">
+      <input type="email" id="emailInput" placeholder="your@email.com" required>
+      <button type="submit">Get Free Alerts</button>
+    </form>
+    <p class="signup-note">Free forever. Congress trade alerts, no credit card required.</p>
+    <div class="signup-success" id="signupSuccess">You're in. Watch your inbox for the next congress trade alert.</div>
+  </div>
+</section>
+
+<section class="live-feed">
+  <div class="container">
+    <div class="live-feed-label"><span class="dot"></span> Recent signals</div>
+    <div style="overflow:hidden">
+      <div class="ticker-scroll" id="ticker">
+        <div class="ticker-item"><span class="tag tag-congress">CONGRESS</span><span class="ticker-sym">NVDA</span><span class="ticker-detail">Sen. Tuberville purchased $50K-$100K</span></div>
+        <div class="ticker-item"><span class="tag tag-flow">FLOW</span><span class="ticker-sym">AAPL</span><span class="ticker-detail">$2.1M calls swept, Mar 230C</span></div>
+        <div class="ticker-item"><span class="tag tag-darkpool">DARK POOL</span><span class="ticker-sym">TSLA</span><span class="ticker-detail">4.2M shares, $1.1B notional</span></div>
+        <div class="ticker-item"><span class="tag tag-congress">CONGRESS</span><span class="ticker-sym">MSFT</span><span class="ticker-detail">Rep. Pelosi purchased $1M-$5M</span></div>
+        <div class="ticker-item"><span class="tag tag-flow">FLOW</span><span class="ticker-sym">META</span><span class="ticker-detail">$800K puts, unusual volume 12x avg</span></div>
+        <div class="ticker-item"><span class="tag tag-darkpool">DARK POOL</span><span class="ticker-sym">AMD</span><span class="ticker-detail">2.8M shares above ask price</span></div>
+        <div class="ticker-item"><span class="tag tag-congress">CONGRESS</span><span class="ticker-sym">GOOG</span><span class="ticker-detail">Sen. Ossoff sold $100K-$250K</span></div>
+        <div class="ticker-item"><span class="tag tag-flow">FLOW</span><span class="ticker-sym">AMZN</span><span class="ticker-detail">$1.5M calls, earnings play</span></div>
+        <!-- Duplicate for seamless scroll -->
+        <div class="ticker-item"><span class="tag tag-congress">CONGRESS</span><span class="ticker-sym">NVDA</span><span class="ticker-detail">Sen. Tuberville purchased $50K-$100K</span></div>
+        <div class="ticker-item"><span class="tag tag-flow">FLOW</span><span class="ticker-sym">AAPL</span><span class="ticker-detail">$2.1M calls swept, Mar 230C</span></div>
+        <div class="ticker-item"><span class="tag tag-darkpool">DARK POOL</span><span class="ticker-sym">TSLA</span><span class="ticker-detail">4.2M shares, $1.1B notional</span></div>
+        <div class="ticker-item"><span class="tag tag-congress">CONGRESS</span><span class="ticker-sym">MSFT</span><span class="ticker-detail">Rep. Pelosi purchased $1M-$5M</span></div>
+        <div class="ticker-item"><span class="tag tag-flow">FLOW</span><span class="ticker-sym">META</span><span class="ticker-detail">$800K puts, unusual volume 12x avg</span></div>
+        <div class="ticker-item"><span class="tag tag-darkpool">DARK POOL</span><span class="ticker-sym">AMD</span><span class="ticker-detail">2.8M shares above ask price</span></div>
+        <div class="ticker-item"><span class="tag tag-congress">CONGRESS</span><span class="ticker-sym">GOOG</span><span class="ticker-detail">Sen. Ossoff sold $100K-$250K</span></div>
+        <div class="ticker-item"><span class="tag tag-flow">FLOW</span><span class="ticker-sym">AMZN</span><span class="ticker-detail">$1.5M calls, earnings play</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="signals" id="signals">
+  <div class="container">
+    <h2>Three intelligence feeds. One edge.</h2>
+    <p class="subtitle">Every signal the market doesn't want you to see.</p>
+    <div class="signal-grid">
+      <div class="signal-card card-congress">
+        <div class="icon">&#127963;</div>
+        <span class="tier-badge" style="background:var(--green-dim);color:var(--green)">FREE</span>
+        <h3>Congressional Trades</h3>
+        <p>Members of Congress are required to disclose stock trades. Some consistently beat the market. We flag the trades that matter within hours of filing.</p>
+        <div class="example">
+          <strong style="color:var(--purple)">NEW TRADE</strong><br>
+          Sen. Tommy Tuberville<br>
+          Purchased NVDA $50K-$100K<br>
+          Filed: 2 days after trade<br>
+          <span style="color:var(--green)">Active member, fast filer</span>
+        </div>
+      </div>
+      <div class="signal-card card-flow">
+        <div class="icon">&#9889;</div>
+        <span class="tier-badge">PRO - $19/mo</span>
+        <h3>Unusual Options Flow</h3>
+        <p>When someone drops $1M+ on short-dated calls, they probably know something. We scan every options trade and surface the 1-2 highest-conviction signals per day.</p>
+        <div class="example">
+          <strong style="color:var(--green)">HIGH CONVICTION FLOW</strong><br>
+          AAPL Mar 28 $230 Calls<br>
+          Premium: $2.1M | Score: 7.8/10<br>
+          Vol: 12x avg | Sweep<br>
+          <span style="color:var(--accent)">+ Analysis: pre-earnings positioning</span>
+        </div>
+      </div>
+      <div class="signal-card card-darkpool">
+        <div class="icon">&#128373;</div>
+        <span class="tier-badge">ELITE - $39/mo</span>
+        <h3>Dark Pool Intelligence</h3>
+        <p>40% of trades happen off-exchange. Our daily report surfaces the biggest institutional moves, unusual block trades, and actionable trade ideas with entry/exit levels.</p>
+        <div class="example">
+          <strong style="color:var(--gold)">DAILY DARK POOL REPORT</strong><br>
+          TSLA: 4.2M shares, $1.1B notional<br>
+          Direction: Accumulation (above ask)<br>
+          <span style="color:var(--gold)">+ Trade idea: Long > $248, target $265</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="pricing" id="pricing">
+  <div class="container">
+    <h2>Simple pricing. Real edge.</h2>
+    <p class="subtitle">Start free with congress trades. Upgrade when you're ready for more.</p>
+    <div class="pricing-grid">
+      <div class="price-card">
+        <h3>Free</h3>
+        <p style="color:var(--text-muted);font-size:0.85rem">For the curious</p>
+        <div class="price">$0<span>/mo</span></div>
+        <div class="price-note">Free forever</div>
+        <ul>
+          <li>Congressional trade alerts</li>
+          <li>Politician name, ticker, amount</li>
+          <li>Email delivery</li>
+          <li>3x per week digest</li>
+        </ul>
+        <a href="#" class="cta cta-free" onclick="document.getElementById('emailInput').focus();return false;">Get Started</a>
+      </div>
+      <div class="price-card featured">
+        <div class="popular">Most Popular</div>
+        <h3>Pro</h3>
+        <p style="color:var(--text-muted);font-size:0.85rem">For active traders</p>
+        <div class="price">$19<span>/mo</span></div>
+        <div class="price-note">Cancel anytime</div>
+        <ul>
+          <li>Everything in Free</li>
+          <li>1-2 unusual flow alerts/day</li>
+          <li>Full context + analysis</li>
+          <li>Score, premium, vol ratio</li>
+          <li>Real-time email + SMS</li>
+          <li>Congress trade context (history, accuracy)</li>
+        </ul>
+        <button class="cta cta-pro" onclick="document.getElementById('emailInput').focus()">Start Free, Upgrade Later</button>
+      </div>
+      <div class="price-card">
+        <h3>Elite</h3>
+        <p style="color:var(--text-muted);font-size:0.85rem">For serious traders</p>
+        <div class="price">$39<span>/mo</span></div>
+        <div class="price-note">Cancel anytime</div>
+        <ul>
+          <li>Everything in Pro</li>
+          <li>Daily dark pool report</li>
+          <li>Institutional flow analysis</li>
+          <li>Actionable trade ideas w/ levels</li>
+          <li>Weekly deep-dive report</li>
+          <li>Priority SMS alerts</li>
+        </ul>
+        <button class="cta cta-elite" onclick="document.getElementById('emailInput').focus()">Start Free, Upgrade Later</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="proof">
+  <div class="container">
+    <h2>Built on real data</h2>
+    <div class="proof-stats">
+      <div class="proof-stat">
+        <div class="number" style="color:var(--purple)">535</div>
+        <div class="label">Members of Congress tracked</div>
+      </div>
+      <div class="proof-stat">
+        <div class="number" style="color:var(--green)">50K+</div>
+        <div class="label">Options trades scanned daily</div>
+      </div>
+      <div class="proof-stat">
+        <div class="number" style="color:var(--gold)">40%</div>
+        <div class="label">Of all trades happen in dark pools</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="faq" id="faq">
+  <div class="container">
+    <h2>FAQ</h2>
+    <div class="faq-list">
+      <div class="faq-item">
+        <div class="faq-q">Where does the data come from?</div>
+        <div class="faq-a">Congressional trades come from mandatory STOCK Act filings. Options flow and dark pool data come from real-time market feeds. We don't make anything up.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">How fast are the alerts?</div>
+        <div class="faq-a">Congress trades are sent within hours of public filing. Options flow alerts are sent in real-time during market hours (2x daily scans). Dark pool reports are delivered before market open.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Is this financial advice?</div>
+        <div class="faq-a">No. MarketSignals provides information and analysis for educational purposes. We are not registered investment advisors. Always do your own research before making trading decisions.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Can I cancel anytime?</div>
+        <div class="faq-a">Yes. No contracts, no commitments. Cancel your paid subscription anytime and you'll keep access through the end of your billing period.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">What makes this different from Unusual Whales or Quiver Quant?</div>
+        <div class="faq-a">We combine all three signal types (congress, options flow, dark pools) in one place and filter aggressively. Instead of showing you thousands of trades, we surface 1-2 high-conviction signals per day. Quality over quantity.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <p style="margin-bottom:8px">MarketSignals &mdash; See what smart money is doing.</p>
+    <p>Not financial advice. For informational purposes only. <a href="mailto:support@marketsignals.com">Contact</a></p>
+  </div>
+</footer>
+
+<script>
+  // FAQ toggle
+  document.querySelectorAll('.faq-q').forEach(q => {
+    q.addEventListener('click', () => q.parentElement.classList.toggle('open'));
+  });
+
+  // Signup form
+  const SUPABASE_URL = 'https://ywswccgxwbzgisvdpcou.supabase.co';
+  const SUPABASE_KEY = 'sb_publishable_NFpSgF4-O6bYLEJcWdNQzg_-_wvagjm';
+
+  document.getElementById('signupForm').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const email = document.getElementById('emailInput').value.trim();
+    if (!email) return;
+
+    const btn = e.target.querySelector('button');
+    btn.disabled = true;
+    btn.textContent = 'Joining...';
+
+    try {
+      const res = await fetch(`${SUPABASE_URL}/rest/v1/ms_subscribers`, {
+        method: 'POST',
+        headers: {
+          'apikey': SUPABASE_KEY,
+          'Authorization': `Bearer ${SUPABASE_KEY}`,
+          'Content-Type': 'application/json',
+          'Prefer': 'return=minimal'
+        },
+        body: JSON.stringify({
+          email: email,
+          tier: 'free',
+          source: 'landing_page',
+          source_detail: new URLSearchParams(window.location.search).get('utm_source') || 'direct'
+        })
+      });
+
+      if (res.ok || res.status === 201) {
+        document.getElementById('signupForm').style.display = 'none';
+        document.querySelector('.signup-note').style.display = 'none';
+        document.getElementById('signupSuccess').style.display = 'block';
+      } else if (res.status === 409) {
+        // Duplicate email
+        document.getElementById('signupForm').style.display = 'none';
+        document.querySelector('.signup-note').style.display = 'none';
+        const s = document.getElementById('signupSuccess');
+        s.textContent = "You're already signed up. Check your inbox.";
+        s.style.display = 'block';
+      } else {
+        btn.textContent = 'Try again';
+        btn.disabled = false;
+      }
+    } catch (err) {
+      btn.textContent = 'Try again';
+      btn.disabled = false;
+    }
+  });
+</script>
+
+</body>
+</html>

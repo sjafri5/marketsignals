@@ -273,7 +273,9 @@
   <div class="container">
     <h2>Start seeing what Congress trades</h2>
     <p>Free congressional trade alerts. No credit card. Unsubscribe anytime.</p>
+    <div id="tierBadge" style="display:none; background: var(--accent-dim); color: var(--accent); padding: 4px 14px; border-radius: 50px; font-size: 0.8rem; font-weight: 600; margin-bottom: 16px; border: 1px solid rgba(59,130,246,0.2);"></div>
     <form class="signup-form" id="signupForm">
+      <input type="hidden" id="selectedTier" value="free">
       <input type="email" id="emailInput" placeholder="you@email.com" required>
       <button type="submit">Get Free Alerts</button>
     </form>
@@ -292,9 +294,69 @@
 const SUPABASE_URL = 'https://ywswccgxwbzgisvdpcou.supabase.co';
 const SUPABASE_KEY = 'sb_publishable_NFpSgF4-O6bYLEJcWdNQzg_-_wvagjm';
 
+// Load live signals from Supabase
+(async function loadLiveFeed() {
+  try {
+    const res = await fetch(`${SUPABASE_URL}/rest/v1/market_signals_history?order=sent_at.desc&limit=6`, {
+      headers: { 'apikey': SUPABASE_KEY, 'Authorization': `Bearer ${SUPABASE_KEY}` }
+    });
+    if (!res.ok) return;
+    const signals = await res.json();
+    if (!signals.length) return;
+    
+    const grid = document.querySelector('.feed-grid');
+    grid.innerHTML = signals.map(s => {
+      const tagClass = s.signal_type === 'congress' ? 'tag-congress' : s.signal_type === 'flow' ? 'tag-flow' : 'tag-darkpool';
+      const tagLabel = s.signal_type.charAt(0).toUpperCase() + s.signal_type.slice(1);
+      const isLocked = s.tier_required !== 'free';
+      const ago = timeAgo(new Date(s.sent_at));
+      
+      if (isLocked) {
+        const tierName = s.tier_required === 'pro' ? 'Pro' : 'Elite';
+        return `<div class="signal-card">
+          <div class="signal-tag ${tagClass}">${tagLabel}</div>
+          <h3>${s.ticker} - Signal Detected</h3>
+          <div class="locked">&#128274; Upgrade to ${tierName} to see ${s.signal_type} alerts</div>
+          <div class="time">${ago}</div>
+        </div>`;
+      }
+      
+      return `<div class="signal-card">
+        <div class="signal-tag ${tagClass}">${tagLabel}</div>
+        <h3>${s.headline}</h3>
+        <div class="detail">${s.detail ? (typeof s.detail === 'string' ? s.detail : JSON.stringify(s.detail).slice(0, 120)) : ''}</div>
+        <div class="time">${ago}</div>
+      </div>`;
+    }).join('');
+  } catch(e) { /* keep static fallback */ }
+})();
+
+function timeAgo(date) {
+  const mins = Math.floor((Date.now() - date.getTime()) / 60000);
+  if (mins < 60) return `${mins}m ago`;
+  const hrs = Math.floor(mins / 60);
+  if (hrs < 24) return `${hrs}h ago`;
+  const days = Math.floor(hrs / 24);
+  return days === 1 ? 'Yesterday' : `${days} days ago`;
+}
+
+// Tier selection from pricing buttons
+document.querySelectorAll('.tier-btn').forEach(btn => {
+  btn.addEventListener('click', (e) => {
+    const card = e.target.closest('.tier-card');
+    const tierName = card.querySelector('.tier-name').textContent.toLowerCase();
+    if (tierName !== 'free') {
+      document.getElementById('selectedTier').value = tierName;
+      document.getElementById('tierBadge').textContent = tierName.charAt(0).toUpperCase() + tierName.slice(1) + ' tier selected';
+      document.getElementById('tierBadge').style.display = 'inline-block';
+    }
+  });
+});
+
 document.getElementById('signupForm').addEventListener('submit', async (e) => {
   e.preventDefault();
   const email = document.getElementById('emailInput').value.trim();
+  const tier = document.getElementById('selectedTier').value || 'free';
   const result = document.getElementById('signupResult');
   const btn = e.target.querySelector('button');
 
@@ -312,12 +374,16 @@ document.getElementById('signupForm').addEventListener('submit', async (e) => {
         'Content-Type': 'application/json',
         'Prefer': 'return=minimal'
       },
-      body: JSON.stringify({ email, tier: 'free', source: 'landing_page' })
+      body: JSON.stringify({ email, tier: tier, source: 'landing_page', source_detail: tier !== 'free' ? `interested_in_${tier}` : null })
     });
 
     if (res.ok) {
       result.className = 'signup-result success';
-      result.textContent = "You're in. Check your inbox for your first congressional trade alert.";
+      if (tier === 'free') {
+        result.textContent = "You're in. Check your inbox for your first congressional trade alert.";
+      } else {
+        result.textContent = `You're on the ${tier} waitlist. We'll email you when paid tiers launch. Free congress alerts start now.`;
+      }
       document.getElementById('emailInput').value = '';
     } else if (res.status === 409) {
       result.className = 'signup-result success';

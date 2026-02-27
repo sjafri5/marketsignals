@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Unsubscribe - Market Signals</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #0a0a0a; color: #e0e0e0; display: flex; justify-content: center; align-items: center; min-height: 100vh; }
+    .container { max-width: 480px; padding: 40px; text-align: center; }
+    h1 { font-size: 1.5rem; margin-bottom: 16px; }
+    p { color: #888; margin-bottom: 24px; line-height: 1.6; }
+    .btn { display: inline-block; padding: 12px 32px; border-radius: 8px; border: none; font-size: 1rem; font-weight: 600; cursor: pointer; transition: all 0.2s; }
+    .btn-danger { background: #dc2626; color: white; }
+    .btn-danger:hover { background: #b91c1c; }
+    .btn-back { background: transparent; color: #4a9eff; border: 1px solid #333; margin-left: 12px; }
+    .btn-back:hover { border-color: #4a9eff; }
+    #result { margin-top: 24px; padding: 16px; border-radius: 8px; display: none; }
+    .success { background: #064e3b; border: 1px solid #10b981; }
+    .error { background: #450a0a; border: 1px solid #dc2626; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Unsubscribe from Market Signals</h1>
+    <p id="msg">You'll stop receiving all email alerts. You can always re-subscribe at marketsignals.pages.dev.</p>
+    <div id="actions">
+      <button class="btn btn-danger" onclick="unsub()">Unsubscribe</button>
+      <a href="https://marketsignals.pages.dev" class="btn btn-back">Go back</a>
+    </div>
+    <div id="result"></div>
+  </div>
+  <script>
+    const SUPABASE_URL = 'https://ywswccgxwbzgisvdpcou.supabase.co';
+    const SUPABASE_KEY = 'sb_publishable_NFpSgF4-O6bYLEJcWdNQzg_-_wvagjm';
+    const params = new URLSearchParams(window.location.search);
+    const email = params.get('email');
+    if (email) {
+      document.getElementById('msg').textContent = `Unsubscribe ${email} from all Market Signals alerts?`;
+    }
+    async function unsub() {
+      if (!email) { showResult('No email provided. Please use the unsubscribe link from your email.', 'error'); return; }
+      try {
+        const res = await fetch(`${SUPABASE_URL}/rest/v1/market_signals_subscribers?email=eq.${encodeURIComponent(email)}`, {
+          method: 'PATCH',
+          headers: {
+            'apikey': SUPABASE_KEY,
+            'Authorization': `Bearer ${SUPABASE_KEY}`,
+            'Content-Type': 'application/json',
+            'Prefer': 'return=minimal'
+          },
+          body: JSON.stringify({ status: 'unsubscribed' })
+        });
+        if (res.ok) {
+          showResult('You have been unsubscribed. Sorry to see you go.', 'success');
+          document.getElementById('actions').style.display = 'none';
+        } else {
+          showResult('Something went wrong. Email info@marketsignals.pages.dev to unsubscribe manually.', 'error');
+        }
+      } catch (e) {
+        showResult('Network error. Please try again.', 'error');
+      }
+    }
+    function showResult(msg, type) {
+      const el = document.getElementById('result');
+      el.textContent = msg;
+      el.className = type;
+      el.style.display = 'block';
+    }
+  </script>
+</body>
+</html>

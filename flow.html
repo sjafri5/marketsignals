@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Market Signals - Unusual Options Flow & Dark Pool Alerts</title>
+  <meta name="description" content="Track unusual options activity and dark pool trades. Free daily alerts showing where institutional money is moving. Data-driven market intelligence.">
+  <!-- GA4 -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-Y9LR1JV0XK"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-Y9LR1JV0XK');</script>
+  <!-- Meta Pixel -->
+  <script>!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');fbq('init','371861482084712');fbq('track','PageView');</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #09090b; --bg-card: #111114; --border: #1e1e26; --text: #e4e4e7;
+      --text-muted: #71717a; --accent: #3b82f6; --accent-dim: rgba(59,130,246,0.1);
+      --green: #22c55e; --green-dim: rgba(34,197,94,0.08);
+      --red: #ef4444; --red-dim: rgba(239,68,68,0.08);
+      --purple: #a855f7; --purple-dim: rgba(168,85,247,0.08);
+    }
+    body { font-family: 'Inter', -apple-system, sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; -webkit-font-smoothing: antialiased; }
+    .container { max-width: 800px; margin: 0 auto; padding: 0 24px; }
+    .mono { font-family: 'JetBrains Mono', monospace; }
+
+    /* Hero */
+    .hero { padding: 80px 0 60px; text-align: center; }
+    .hero h1 { font-size: 2.5rem; font-weight: 700; line-height: 1.2; margin-bottom: 20px; }
+    .hero h1 span { color: var(--accent); }
+    .hero p { font-size: 1.15rem; color: var(--text-muted); max-width: 600px; margin: 0 auto 40px; }
+
+    /* Signup */
+    .signup-box { background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; padding: 32px; max-width: 500px; margin: 0 auto; }
+    .signup-box h3 { font-size: 1.1rem; margin-bottom: 16px; }
+    .signup-box form { display: flex; gap: 10px; }
+    .signup-box input[type="email"] { flex: 1; padding: 12px 16px; background: var(--bg); border: 1px solid var(--border); border-radius: 8px; color: var(--text); font-size: 1rem; }
+    .signup-box input[type="email"]::placeholder { color: var(--text-muted); }
+    .signup-box button { padding: 12px 24px; background: var(--accent); color: white; border: none; border-radius: 8px; font-weight: 600; cursor: pointer; white-space: nowrap; }
+    .signup-box button:hover { opacity: 0.9; }
+    .signup-box .note { font-size: 0.8rem; color: var(--text-muted); margin-top: 10px; }
+
+    /* Features */
+    .features { padding: 60px 0; }
+    .feature-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    .feature { background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; padding: 24px; }
+    .feature .tag { display: inline-block; padding: 4px 10px; border-radius: 6px; font-size: 0.75rem; font-weight: 600; margin-bottom: 12px; }
+    .feature .tag.flow { background: var(--accent-dim); color: var(--accent); }
+    .feature .tag.dark { background: var(--purple-dim); color: var(--purple); }
+    .feature h3 { font-size: 1rem; margin-bottom: 8px; }
+    .feature p { font-size: 0.9rem; color: var(--text-muted); }
+
+    /* Sample */
+    .sample { padding: 40px 0 60px; }
+    .sample h2 { text-align: center; margin-bottom: 24px; font-size: 1.3rem; }
+    .sample-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; padding: 20px; margin-bottom: 12px; display: flex; justify-content: space-between; align-items: center; }
+    .sample-card .ticker { font-weight: 700; font-size: 1.1rem; }
+    .sample-card .detail { color: var(--text-muted); font-size: 0.85rem; }
+    .sample-card .direction { padding: 4px 10px; border-radius: 6px; font-weight: 600; font-size: 0.8rem; }
+    .sample-card .direction.bullish { background: var(--green-dim); color: var(--green); }
+    .sample-card .direction.bearish { background: var(--red-dim); color: var(--red); }
+
+    /* Pricing */
+    .pricing { padding: 40px 0 60px; text-align: center; }
+    .pricing h2 { margin-bottom: 8px; font-size: 1.3rem; }
+    .pricing .sub { color: var(--text-muted); margin-bottom: 24px; }
+    .price-cards { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+    .price-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; padding: 24px; width: 220px; text-align: left; }
+    .price-card.featured { border-color: var(--accent); }
+    .price-card h4 { margin-bottom: 4px; }
+    .price-card .price { font-size: 1.5rem; font-weight: 700; margin-bottom: 12px; }
+    .price-card .price span { font-size: 0.85rem; font-weight: 400; color: var(--text-muted); }
+    .price-card ul { list-style: none; font-size: 0.85rem; color: var(--text-muted); }
+    .price-card ul li { padding: 4px 0; }
+    .price-card ul li::before { content: "->"; margin-right: 6px; color: var(--accent); }
+
+    .disclaimer { text-align: center; padding: 40px 0; font-size: 0.75rem; color: var(--text-muted); max-width: 600px; margin: 0 auto; }
+    @media (max-width: 600px) { .feature-grid { grid-template-columns: 1fr; } .hero h1 { font-size: 1.8rem; } .signup-box form { flex-direction: column; } .price-cards { flex-direction: column; align-items: center; } }
+  </style>
+</head>
+<body>
+
+<section class="hero">
+  <div class="container">
+    <h1>See where <span>institutional money</span> is moving</h1>
+    <p>Unusual options activity. Dark pool block trades. Millions in volume, organized into daily alerts you can actually use.</p>
+    <div class="signup-box">
+      <h3>Get free daily market alerts</h3>
+      <form id="signup-form">
+        <input type="email" id="email" placeholder="your@email.com" required>
+        <button type="submit">Get Alerts</button>
+      </form>
+      <p class="note">Free tier. No credit card. Unsubscribe anytime.</p>
+    </div>
+  </div>
+</section>
+
+<section class="features">
+  <div class="container">
+    <div class="feature-grid">
+      <div class="feature">
+        <span class="tag flow">Options Flow</span>
+        <h3>Unusual Options Activity</h3>
+        <p>Large, repeated sweeps. Ascending fills. Single-leg bets over $50K premium. We filter the noise and surface what matters.</p>
+      </div>
+      <div class="feature">
+        <span class="tag dark">Dark Pool</span>
+        <h3>Block Trade Intelligence</h3>
+        <p>Off-exchange trades that institutions use to move size without moving price. See the blocks before the move shows up on the tape.</p>
+      </div>
+      <div class="feature">
+        <span class="tag flow">Scoring</span>
+        <h3>Signal Quality Scores</h3>
+        <p>Not all flow is equal. We score every alert based on fill pattern, premium size, trade count, and sector context.</p>
+      </div>
+      <div class="feature">
+        <span class="tag dark">Alerts</span>
+        <h3>Daily Email Digest</h3>
+        <p>One email per day with the highest-scoring signals. No app to check, no dashboard to monitor. Just the data.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sample">
+  <div class="container">
+    <h2>What the alerts look like</h2>
+    <div class="sample-card">
+      <div><span class="ticker">NVDA</span><br><span class="detail">Mar 28 $950C | 12 sweeps | $2.4M premium</span></div>
+      <span class="direction bullish">Bullish</span>
+    </div>
+    <div class="sample-card">
+      <div><span class="ticker">TSLA</span><br><span class="detail">Mar 21 $180P | 8 ascending fills | $890K premium</span></div>
+      <span class="direction bearish">Bearish</span>
+    </div>
+    <div class="sample-card">
+      <div><span class="ticker">AAPL</span><br><span class="detail">Dark pool block | 450K shares | $78.3M notional</span></div>
+      <span class="direction bullish">Bullish</span>
+    </div>
+  </div>
+</section>
+
+<section class="pricing">
+  <div class="container">
+    <h2>Simple pricing</h2>
+    <p class="sub">Start free. Upgrade when you want more.</p>
+    <div class="price-cards">
+      <div class="price-card">
+        <h4>Free</h4>
+        <div class="price">$0<span>/mo</span></div>
+        <ul>
+          <li>Daily market highlights</li>
+          <li>Top signals summary</li>
+          <li>Email delivery</li>
+        </ul>
+      </div>
+      <div class="price-card featured">
+        <h4>Pro</h4>
+        <div class="price">$19<span>/mo</span></div>
+        <ul>
+          <li>Full options flow alerts</li>
+          <li>Signal quality scores</li>
+          <li>Sector breakdowns</li>
+        </ul>
+      </div>
+      <div class="price-card">
+        <h4>Elite</h4>
+        <div class="price">$39<span>/mo</span></div>
+        <ul>
+          <li>Everything in Pro</li>
+          <li>Dark pool block trades</li>
+          <li>SMS alerts</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="disclaimer">
+  For informational purposes only. Market Signals provides publicly available market data organized for convenience. This is not financial advice. Past market activity does not predict future results. Always do your own research.
+</div>
+
+<script>
+const SUPABASE_URL = 'https://ywswccgxwbzgisvdpcou.supabase.co';
+const SUPABASE_KEY = 'sb_secret_97KlUJH551a7H730geBHGA_mM4TqBlV';
+document.getElementById('signup-form').addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const email = document.getElementById('email').value;
+  const btn = e.target.querySelector('button');
+  btn.textContent = 'Joining...';
+  try {
+    const res = await fetch(`${SUPABASE_URL}/rest/v1/email_list`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'apikey': SUPABASE_KEY, 'Authorization': `Bearer ${SUPABASE_KEY}` },
+      body: JSON.stringify({ email, source: 'marketsignals', source_detail: 'flow-lp' })
+    });
+    if (res.ok) {
+      btn.textContent = 'You\'re in!';
+      fbq('track', 'Lead');
+      gtag('event', 'sign_up', { method: 'email' });
+    } else { btn.textContent = 'Try again'; }
+  } catch { btn.textContent = 'Try again'; }
+});
+</script>
+</body>
+</html>

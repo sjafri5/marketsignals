@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Unsubscribe - Market Signals</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Inter', -apple-system, sans-serif;
+      background: #09090b;
+      color: #e4e4e7;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+    .container {
+      max-width: 480px;
+      width: 100%;
+      text-align: center;
+    }
+    .logo {
+      font-size: 20px;
+      font-weight: 700;
+      color: #e4e4e7;
+      margin-bottom: 48px;
+      letter-spacing: -0.02em;
+    }
+    .logo span { color: #3b82f6; }
+    .card {
+      background: #111114;
+      border: 1px solid #1e1e26;
+      border-radius: 12px;
+      padding: 40px 32px;
+    }
+    h1 {
+      font-size: 22px;
+      font-weight: 600;
+      margin-bottom: 12px;
+      letter-spacing: -0.02em;
+    }
+    .email-display {
+      font-family: 'JetBrains Mono', monospace;
+      color: #71717a;
+      font-size: 14px;
+      margin-bottom: 24px;
+    }
+    .description {
+      color: #71717a;
+      font-size: 14px;
+      line-height: 1.6;
+      margin-bottom: 32px;
+    }
+    button {
+      background: #dc2626;
+      color: white;
+      border: none;
+      padding: 12px 32px;
+      border-radius: 8px;
+      font-size: 15px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background 0.2s;
+      font-family: 'Inter', sans-serif;
+    }
+    button:hover { background: #b91c1c; }
+    button:disabled { opacity: 0.5; cursor: not-allowed; }
+    .result {
+      margin-top: 24px;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+    .result.success { color: #22c55e; }
+    .result.error { color: #ef4444; }
+    .back-link {
+      display: inline-block;
+      margin-top: 32px;
+      color: #3b82f6;
+      text-decoration: none;
+      font-size: 14px;
+    }
+    .back-link:hover { text-decoration: underline; }
+    .no-email {
+      color: #71717a;
+      font-size: 14px;
+      line-height: 1.6;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="logo">Market<span>Signals</span></div>
+    <div class="card">
+      <div id="content"></div>
+    </div>
+    <a href="https://marketsignals.pages.dev" class="back-link">Back to MarketSignals</a>
+  </div>
+
+  <script>
+    const SUPABASE_URL = 'https://ywswccgxwbzgisvdpcou.supabase.co';
+    const SUPABASE_KEY = 'sb_publishable_NFpSgF4-O6bYLEJcWdNQzg_-_wvagjm';
+
+    const params = new URLSearchParams(window.location.search);
+    const email = params.get('email');
+    const content = document.getElementById('content');
+
+    if (!email) {
+      content.innerHTML = `
+        <h1>Unsubscribe</h1>
+        <p class="no-email">No email address provided. If you received an email from us and want to unsubscribe, click the unsubscribe link in that email.</p>
+      `;
+    } else {
+      content.innerHTML = `
+        <h1>Unsubscribe</h1>
+        <p class="email-display">${email.replace(/</g, '&lt;')}</p>
+        <p class="description">You'll stop receiving all MarketSignals alerts (congressional trades, options flow, and dark pool signals). You can re-subscribe anytime.</p>
+        <button id="unsub-btn" onclick="doUnsubscribe()">Confirm Unsubscribe</button>
+        <div id="result" class="result"></div>
+      `;
+    }
+
+    async function doUnsubscribe() {
+      const btn = document.getElementById('unsub-btn');
+      const result = document.getElementById('result');
+      btn.disabled = true;
+      btn.textContent = 'Processing...';
+
+      try {
+        const res = await fetch(`${SUPABASE_URL}/rest/v1/market_signals_subscribers?email=eq.${encodeURIComponent(email)}`, {
+          method: 'PATCH',
+          headers: {
+            'apikey': SUPABASE_KEY,
+            'Authorization': `Bearer ${SUPABASE_KEY}`,
+            'Content-Type': 'application/json',
+            'Prefer': 'return=representation'
+          },
+          body: JSON.stringify({ status: 'unsubscribed', updated_at: new Date().toISOString() })
+        });
+
+        if (res.ok) {
+          const data = await res.json();
+          if (data.length === 0) {
+            result.className = 'result error';
+            result.textContent = 'Email not found in our system. You may already be unsubscribed.';
+          } else {
+            result.className = 'result success';
+            result.textContent = "You've been unsubscribed. You won't receive any more alerts from us.";
+            btn.style.display = 'none';
+          }
+        } else {
+          throw new Error(`${res.status}`);
+        }
+      } catch (err) {
+        result.className = 'result error';
+        result.textContent = 'Something went wrong. Please try again or email us.';
+        btn.disabled = false;
+        btn.textContent = 'Confirm Unsubscribe';
+      }
+    }
+  </script>
+</body>
+</html>

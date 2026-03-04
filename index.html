@@ -312,6 +312,34 @@ fbq('track','PageView');
 const SUPABASE_URL = 'https://ywswccgxwbzgisvdpcou.supabase.co';
 const SUPABASE_KEY = 'sb_publishable_NFpSgF4-O6bYLEJcWdNQzg_-_wvagjm';
 
+function formatDetail(type, detail) {
+  if (!detail) return '';
+  if (typeof detail === 'string') return detail;
+  if (type === 'congress') {
+    const parts = [];
+    if (detail.reporter) parts.push(detail.reporter);
+    if (detail.txn_type && detail.amounts) parts.push(`${detail.txn_type} ${detail.amounts}`);
+    if (detail.flags && detail.flags.length) parts.push(detail.flags.join(', '));
+    return parts.join(' &middot; ') || '';
+  }
+  if (type === 'flow') {
+    const parts = [];
+    if (detail.put_call) parts.push(detail.put_call.toUpperCase());
+    if (detail.strike) parts.push('$' + detail.strike);
+    if (detail.expiry) parts.push('exp ' + detail.expiry);
+    if (detail.premium) parts.push('$' + Number(detail.premium).toLocaleString() + ' premium');
+    return parts.join(' &middot; ') || '';
+  }
+  if (type === 'darkpool') {
+    const parts = [];
+    if (detail.volume) parts.push(Number(detail.volume).toLocaleString() + ' shares');
+    if (detail.price) parts.push('@ $' + detail.price);
+    if (detail.premium) parts.push('$' + Number(detail.premium).toLocaleString());
+    return parts.join(' &middot; ') || '';
+  }
+  return '';
+}
+
 // Load live signals from Supabase
 (async function loadLiveFeed() {
   try {
@@ -342,7 +370,7 @@ const SUPABASE_KEY = 'sb_publishable_NFpSgF4-O6bYLEJcWdNQzg_-_wvagjm';
       return `<div class="signal-card">
         <div class="signal-tag ${tagClass}">${tagLabel}</div>
         <h3>${s.headline}</h3>
-        <div class="detail">${s.detail ? (typeof s.detail === 'string' ? s.detail : JSON.stringify(s.detail).slice(0, 120)) : ''}</div>
+        <div class="detail">${formatDetail(s.signal_type, s.detail)}</div>
         <div class="time">${ago}</div>
       </div>`;
     }).join('');

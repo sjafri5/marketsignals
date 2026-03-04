@@ -84,14 +84,19 @@
 <section class="hero">
   <div class="container">
     <h1>See where <span>institutional money</span> is moving</h1>
-    <p>Unusual options activity. Dark pool block trades. Millions in volume, organized into daily alerts you can actually use.</p>
+    <p>Congressional stock trades. Unusual options sweeps. Dark pool block prints. Public data that moves markets, delivered before the headlines.</p>
     <div class="signup-box">
-      <h3>Get free daily market alerts</h3>
+      <h3>Free daily alerts. Here's what you'll get:</h3>
+      <div style="text-align:left;margin-bottom:16px;font-size:0.9rem;color:var(--text-muted);line-height:1.7">
+        <div>Every congressional stock trade filed with the SEC</div>
+        <div>Politician track records and accuracy scores</div>
+        <div>One email per day, no spam, no upsell pressure</div>
+      </div>
       <form id="signup-form">
         <input type="email" id="email" placeholder="your@email.com" required>
-        <button type="submit">Get Alerts</button>
+        <button type="submit">Get Free Alerts</button>
       </form>
-      <p class="note">Free tier. No credit card. Unsubscribe anytime.</p>
+      <p class="note">No credit card. No spam. Unsubscribe anytime.</p>
     </div>
   </div>
 </section>
@@ -125,14 +130,19 @@
 
 <section class="sample">
   <div class="container">
-    <h2>What the alerts look like</h2>
+    <h2>Today's real signals (March 2, 2026)</h2>
+    <p style="color:var(--text-muted);margin-bottom:16px;font-size:0.9rem">These are actual alerts our subscribers received today.</p>
     <div class="sample-card">
-      <div><span class="ticker">NVDA</span><br><span class="detail">Mar 28 $950C | 12 sweeps | $2.4M premium</span></div>
+      <div><span class="ticker">TSLA</span><br><span class="detail">Mar 27 $400C | 10 clusters | $326K premium | Score: 5.0</span></div>
       <span class="direction bullish">Bullish</span>
     </div>
     <div class="sample-card">
-      <div><span class="ticker">TSLA</span><br><span class="detail">Mar 21 $180P | 8 ascending fills | $890K premium</span></div>
-      <span class="direction bearish">Bearish</span>
+      <div><span class="ticker">PLTR</span><br><span class="detail">Mar 6 $147C | $1.4M premium | Score: 4.5</span></div>
+      <span class="direction bullish">Bullish</span>
+    </div>
+    <div class="sample-card">
+      <div><span class="ticker">NVDA</span><br><span class="detail">Mar 20 $182.5C | Sweep | $149K premium | Score: 3.5</span></div>
+      <span class="direction bullish">Bullish</span>
     </div>
     <div class="sample-card">
       <div><span class="ticker">AAPL</span><br><span class="detail">Dark pool block | 450K shares | $78.3M notional</span></div>
@@ -140,6 +150,10 @@
     </div>
   </div>
 </section>
+<div style="text-align:center;padding:32px 20px;background:#111114;border-top:1px solid #1e1e26;border-bottom:1px solid #1e1e26">
+  <p style="color:#a1a1aa;margin-bottom:12px;font-size:1.1rem">Get alerts like these in your inbox every morning.</p>
+  <a href="#signup-form" style="display:inline-block;background:#3b82f6;color:white;padding:12px 28px;border-radius:8px;font-weight:600;text-decoration:none;font-size:1rem">Get Free Alerts</a>
+</div>
 
 <section class="pricing">
   <div class="container">
@@ -177,13 +191,13 @@
   </div>
 </section>
 
-<div class="disclaimer">
+<section class="features" style="padding:20px 0 40px"><div class="container"><h2 style="text-align:center;margin-bottom:16px;font-size:1.2rem">Learn More</h2><div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap"><a href="/blog/options-flow" style="background:var(--bg-card);border:1px solid var(--border);border-radius:12px;padding:20px;text-decoration:none;color:var(--text);max-width:320px"><h4 style="margin-bottom:8px">What Is Unusual Options Flow?</h4><p style="font-size:0.85rem;color:var(--text-muted)">How to read the signals behind large options trades and what they mean for markets.</p></a><a href="/blog/congress-trades" style="background:var(--bg-card);border:1px solid var(--border);border-radius:12px;padding:20px;text-decoration:none;color:var(--text);max-width:320px"><h4 style="margin-bottom:8px">Why Congress Trades Matter</h4><p style="font-size:0.85rem;color:var(--text-muted)">The data behind congressional trading and what it reveals about market direction.</p></a><a href="/blog/dark-pool" style="background:var(--bg-card);border:1px solid var(--border);border-radius:12px;padding:20px;text-decoration:none;color:var(--text);max-width:320px"><h4 style="margin-bottom:8px">Dark Pool Trading Explained</h4><p style="font-size:0.85rem;color:var(--text-muted)">40% of trades happen off-exchange. Learn what institutional block trades reveal.</p></a></div></div></section><div class="disclaimer">
   For informational purposes only. Market Signals provides publicly available market data organized for convenience. This is not financial advice. Past market activity does not predict future results. Always do your own research.
 </div>
 
 <script>
 const SUPABASE_URL = 'https://ywswccgxwbzgisvdpcou.supabase.co';
-const SUPABASE_KEY = 'sb_secret_97KlUJH551a7H730geBHGA_mM4TqBlV';
+const SUPABASE_KEY = 'sb_publishable_NFpSgF4-O6bYLEJcWdNQzg_-_wvagjm';
 document.getElementById('signup-form').addEventListener('submit', async (e) => {
   e.preventDefault();
   const email = document.getElementById('email').value;

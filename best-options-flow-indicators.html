@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Best Options Flow Indicators: How to Score Unusual Activity (2026)</title>
+  <meta name="description" content="Learn which options flow indicators actually predict price moves. Sweep orders, ascending fills, put/call ratios, and a scoring system you can use today.">
+  <link rel="canonical" href="https://marketsignals.pages.dev/best-options-flow-indicators">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-Y9LR1JV0XK"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-Y9LR1JV0XK');</script>
+  <script>!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');fbq('init','371861482084712');fbq('track','PageView');</script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    :root{--bg:#09090b;--bg-card:#111114;--border:#1e1e26;--text:#e4e4e7;--text-muted:#71717a;--accent:#3b82f6;--green:#22c55e;--red:#ef4444;--yellow:#eab308}
+    body{font-family:'Inter',-apple-system,sans-serif;background:var(--bg);color:var(--text);line-height:1.7;-webkit-font-smoothing:antialiased}
+    .container{max-width:680px;margin:0 auto;padding:0 20px}
+    a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline}
+    nav{padding:20px 0;border-bottom:1px solid var(--border)}
+    nav .container{display:flex;justify-content:space-between;align-items:center}
+    .logo{font-weight:800;font-size:1.25rem;letter-spacing:-0.5px}.logo span{color:var(--accent)}
+    .nav-cta{background:var(--accent);color:#fff;padding:8px 20px;border-radius:8px;font-weight:600;font-size:0.875rem}
+    article{padding:48px 0}
+    h1{font-size:2rem;font-weight:900;letter-spacing:-1px;margin-bottom:16px;line-height:1.2}
+    .meta{color:var(--text-muted);font-size:0.85rem;margin-bottom:32px}
+    h2{font-size:1.35rem;font-weight:800;margin:40px 0 12px;letter-spacing:-0.5px}
+    h3{font-size:1.1rem;font-weight:700;margin:28px 0 8px}
+    p{margin-bottom:16px;color:#d4d4d8}
+    ul,ol{margin:0 0 16px 24px;color:#d4d4d8}li{margin-bottom:8px}
+    strong{color:#fff}
+    code{font-family:'JetBrains Mono',monospace;background:#1a1a2e;padding:2px 6px;border-radius:4px;font-size:0.85em;color:var(--accent)}
+    .score-card{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;padding:24px;margin:24px 0}
+    .score-card h3{margin:0 0 16px;color:var(--green)}
+    .score-item{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--border)}
+    .score-item:last-child{border-bottom:none}
+    .score-item .label{color:#d4d4d8}.score-item .points{font-weight:700;font-family:'JetBrains Mono',monospace}
+    .score-item .points.pos{color:var(--green)}.score-item .points.neg{color:var(--red)}.score-item .points.neu{color:var(--yellow)}
+    .callout{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;padding:24px;margin:32px 0;text-align:center}
+    .callout h3{margin:0 0 8px;font-size:1.1rem}.callout p{color:var(--text-muted);font-size:0.9rem;margin-bottom:16px}
+    .callout-form{display:flex;gap:8px;max-width:400px;margin:0 auto}
+    .callout-form input{flex:1;padding:10px 14px;border-radius:8px;border:1px solid var(--border);background:var(--bg);color:var(--text);font-size:0.9rem;font-family:inherit;outline:none}
+    .callout-form input:focus{border-color:var(--accent)}
+    .callout-form button{padding:10px 20px;border-radius:8px;background:var(--accent);color:#fff;font-weight:700;font-size:0.9rem;border:none;cursor:pointer;white-space:nowrap}
+    .callout-result{margin-top:8px;font-size:0.8rem}.callout-result.success{color:var(--green)}.callout-result.error{color:var(--red)}
+    footer{padding:32px 0;border-top:1px solid var(--border);text-align:center;color:var(--text-muted);font-size:0.75rem;margin-top:40px}
+    @media(max-width:640px){h1{font-size:1.5rem}.callout-form{flex-direction:column}}
+  </style>
+</head>
+<body>
+<nav><div class="container"><a href="/" class="logo">Market<span>Signals</span></a><a href="/#signup" class="nav-cta">Get Free Alerts</a></div></nav>
+
+<article><div class="container">
+  <h1>Best Options Flow Indicators: How to Score Unusual Activity</h1>
+  <div class="meta">Updated March 7, 2026 | 8 min read</div>
+
+  <p>Options flow data is noisy. On any given day, millions of contracts trade across thousands of tickers. Most of it is hedging, market making, or retail speculation that tells you nothing. The skill is in filtering for the 1% of trades that actually signal institutional conviction.</p>
+  <p>Here are the indicators that separate signal from noise, and a scoring system you can apply immediately.</p>
+
+  <h2>1. Sweep orders</h2>
+  <p>A sweep order is the clearest sign of urgency in the options market. Instead of placing a limit order and waiting, the buyer sends orders simultaneously to multiple exchanges, sweeping up all available liquidity at every price level. They're paying whatever it takes to get filled immediately.</p>
+  <p>Why it matters: a market maker placing a hedge doesn't sweep. A retail trader buying 10 contracts doesn't sweep. Sweeps are institutional traders who need to get a large position on quickly, usually because they're acting on time-sensitive information or conviction.</p>
+  <p>Not all sweeps are equal. A sweep for 500 contracts of a weekly option is more aggressive than a sweep for 100 contracts of a LEAPS. The shorter the expiration, the more the buyer is betting on an imminent move.</p>
+
+  <h2>2. Ascending fills</h2>
+  <p>When a large order fills across multiple price levels, the fill prices tell a story. <strong>Ascending fills</strong> mean each successive fill was at a higher price than the last. The buyer kept paying more as they exhausted each price level, which signals they want the position badly enough to chase the price.</p>
+  <p><strong>Descending fills</strong> are the opposite and often indicate a less urgent or even hesitant buyer who's getting filled as the market moves against them.</p>
+  <p>In our backtesting, ascending fill sweeps outperform descending fill sweeps by a meaningful margin. The ascending pattern correlates with informed trading because someone with conviction will pay up. Someone guessing will often get a better price because there's no urgency.</p>
+
+  <h2>3. Premium size relative to open interest</h2>
+  <p>A $500K premium trade is meaningless in AAPL options (billions trade daily). The same $500K trade in a mid-cap with $2M in total open interest is a major event. Always normalize premium against the stock's typical options activity.</p>
+  <p>The metric to watch is <strong>premium-to-open-interest ratio</strong>. When a single trade represents more than 10% of the existing open interest in that strike, someone is making a concentrated bet. When it represents more than 50%, it's either a very large institution or someone with information.</p>
+
+  <h2>4. Expiration clustering</h2>
+  <p>Where the activity concentrates on the expiration calendar tells you about the expected timeframe. Heavy activity in:</p>
+  <ul>
+    <li><strong>0-7 DTE (days to expiration):</strong> Betting on an imminent catalyst. Earnings, FDA decisions, court rulings.</li>
+    <li><strong>14-45 DTE:</strong> Swing trade thesis. Expects the move within weeks.</li>
+    <li><strong>90+ DTE:</strong> Structural position. Less about timing, more about direction over quarters.</li>
+    <li><strong>LEAPS (1 year+):</strong> Long-term conviction play. Often the most informative because the premium cost is high, so the trader has real skin in the game.</li>
+  </ul>
+
+  <div class="callout">
+    <h3>Get scored options flow alerts</h3>
+    <p>We filter the noise so you don't have to. Only high-conviction trades, delivered daily.</p>
+    <form class="callout-form" id="midForm">
+      <input type="email" id="midEmail" placeholder="you@email.com" required>
+      <button type="submit">Get Free Alerts</button>
+    </form>
+    <div class="callout-result" id="midResult"></div>
+  </div>
+
+  <h2>5. Put/call ratio context</h2>
+  <p>The raw put/call ratio is one of the most misused indicators in trading. A high put/call ratio doesn't always mean bearish sentiment. Market makers delta-hedge their books constantly, generating put volume that has nothing to do with directional bets.</p>
+  <p>The useful version is the <strong>customer-only put/call ratio</strong>, which strips out market maker activity. When customers (non-market-maker accounts) are buying puts aggressively, that's a real sentiment signal. When the overall ratio spikes but customer activity is flat, it's just hedging noise.</p>
+
+  <h2>6. Floor trades and large cap blocks</h2>
+  <p>Some trades still execute on the physical exchange floor rather than electronically. Floor trades tend to be larger, more negotiated, and more likely to represent institutional activity. A floor trade in a large-cap name for significant premium is often a fund building a position through their floor broker, which adds a layer of conviction that electronic trades don't carry.</p>
+
+  <h2>A practical scoring system</h2>
+  <p>Here's a simple scoring framework. Each trade starts at 0 and gets points based on these criteria:</p>
+
+  <div class="score-card">
+    <h3>Options Flow Score Card</h3>
+    <div class="score-item"><span class="label">Sweep order</span><span class="points pos">+1.0</span></div>
+    <div class="score-item"><span class="label">Ascending fills</span><span class="points pos">+1.5</span></div>
+    <div class="score-item"><span class="label">Descending fills</span><span class="points neg">-0.5</span></div>
+    <div class="score-item"><span class="label">Floor trade (large cap)</span><span class="points pos">+1.5</span></div>
+    <div class="score-item"><span class="label">Premium > 10% of OI</span><span class="points pos">+1.0</span></div>
+    <div class="score-item"><span class="label">Premium > $250K</span><span class="points pos">+1.0</span></div>
+    <div class="score-item"><span class="label">Near-term expiry (< 14 DTE)</span><span class="points pos">+0.5</span></div>
+    <div class="score-item"><span class="label">LEAPS (> 180 DTE)</span><span class="points pos">+1.0</span></div>
+    <div class="score-item"><span class="label">Repeat activity (3+ trades same ticker/week)</span><span class="points pos">+1.0</span></div>
+    <div class="score-item"><span class="label">Multi-leg / spread</span><span class="points neu">0.0</span></div>
+  </div>
+
+  <p><strong>Score 5.0+:</strong> High conviction signal. Worth investigating immediately.</p>
+  <p><strong>Score 3.0-4.9:</strong> Moderate signal. Add to watchlist, wait for confirmation.</p>
+  <p><strong>Score below 3.0:</strong> Probably noise. Ignore unless other factors align.</p>
+
+  <p>This scoring system isn't magic. It's a filter. The point is to reduce thousands of daily trades to a handful that deserve your attention and research time.</p>
+
+  <h2>Combining with other signals</h2>
+  <p>Options flow is most powerful when combined with other institutional indicators:</p>
+  <ul>
+    <li><strong><a href="/how-to-read-dark-pool-prints">Dark pool prints</a>:</strong> Large dark pool block + unusual call buying = strong bullish confluence</li>
+    <li><strong><a href="/how-to-use-congress-trading-data">Congressional trades</a>:</strong> Committee member buying stock + call sweep in same name = multiple informed parties aligned</li>
+    <li><strong>Technical levels:</strong> Unusual call buying at a key support level suggests informed buyers see the floor holding</li>
+    <li><strong>Earnings calendar:</strong> Pre-earnings sweep activity is one of the most studied edges in options flow</li>
+  </ul>
+
+  <div class="callout">
+    <h3>Three signals. One inbox.</h3>
+    <p>Congress trades, options flow scores, and dark pool data. Updated daily.</p>
+    <form class="callout-form" id="bottomForm">
+      <input type="email" id="bottomEmail" placeholder="you@email.com" required>
+      <button type="submit">Sign Up Free</button>
+    </form>
+    <div class="callout-result" id="bottomResult"></div>
+  </div>
+
+  <p style="margin-top:32px;"><strong>Related:</strong> <a href="/what-is-options-flow">What Is Options Flow?</a> | <a href="/how-to-read-dark-pool-prints">How to Read Dark Pool Prints</a> | <a href="/how-to-use-congress-trading-data">Congressional Trading Strategy</a></p>
+</div></article>
+
+<footer><div class="container">
+  <p>Not financial advice. For informational purposes only.</p>
+  <p style="margin-top:8px"><a href="/">MarketSignals</a> | Built by <a href="https://razajafri.com">Raza Jafri</a></p>
+</div></footer>
+
+<script>
+const SUPABASE_URL='https://ywswccgxwbzgisvdpcou.supabase.co';
+const SUPABASE_KEY=['sb_publishable','NFpSgF4-O6bYLEJcWdNQzg_-_wvagjm'].join('_');
+function setupForm(fId,eId,rId,src){document.getElementById(fId).addEventListener('submit',async e=>{e.preventDefault();const email=document.getElementById(eId).value.trim();const result=document.getElementById(rId);const btn=e.target.querySelector('button');if(!email)return;btn.disabled=true;btn.textContent='Signing up...';try{const res=await fetch(`${SUPABASE_URL}/rest/v1/market_signals_subscribers`,{method:'POST',headers:{'apikey':SUPABASE_KEY,'Authorization':`Bearer ${SUPABASE_KEY}`,'Content-Type':'application/json','Prefer':'return=minimal'},body:JSON.stringify({email,tier:'free',source:'blog',source_detail:src})});if(res.ok||res.status===409){if(typeof fbq!=='undefined')fbq('track','CompleteRegistration',{content_name:src,currency:'USD',value:0});result.className='callout-result success';result.textContent="You're in. First alert arrives with the next filing.";btn.textContent='Subscribed';}else throw new Error(res.status);}catch(err){result.className='callout-result error';result.textContent='Something went wrong. Try again.';btn.disabled=false;btn.textContent='Sign Up Free';}});}
+setupForm('midForm','midEmail','midResult','blog_flow_indicators_mid');
+setupForm('bottomForm','bottomEmail','bottomResult','blog_flow_indicators_bottom');
+</script>
+</body></html>

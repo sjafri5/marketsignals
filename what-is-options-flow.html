@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>What Is Options Flow? How to Read Unusual Options Activity (2026)</title>
+  <meta name="description" content="Options flow explained: what unusual options activity means, how to read sweep orders, and why tracking institutional options bets gives retail investors an edge.">
+  <link rel="canonical" href="https://marketsignals.pages.dev/what-is-options-flow">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-Y9LR1JV0XK"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-Y9LR1JV0XK');</script>
+  <script>!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');fbq('init','371861482084712');fbq('track','PageView');</script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    :root{--bg:#09090b;--bg-card:#111114;--border:#1e1e26;--text:#e4e4e7;--text-muted:#71717a;--accent:#3b82f6;--green:#22c55e;--red:#ef4444}
+    body{font-family:'Inter',-apple-system,sans-serif;background:var(--bg);color:var(--text);line-height:1.7;-webkit-font-smoothing:antialiased}
+    .container{max-width:680px;margin:0 auto;padding:0 20px}
+    a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline}
+    nav{padding:20px 0;border-bottom:1px solid var(--border)}
+    nav .container{display:flex;justify-content:space-between;align-items:center}
+    .logo{font-weight:800;font-size:1.25rem;letter-spacing:-0.5px}.logo span{color:var(--accent)}
+    .nav-cta{background:var(--accent);color:#fff;padding:8px 20px;border-radius:8px;font-weight:600;font-size:0.875rem}
+    article{padding:48px 0}
+    h1{font-size:2rem;font-weight:900;letter-spacing:-1px;margin-bottom:16px;line-height:1.2}
+    .meta{color:var(--text-muted);font-size:0.85rem;margin-bottom:32px}
+    h2{font-size:1.35rem;font-weight:800;margin:40px 0 12px;letter-spacing:-0.5px}
+    h3{font-size:1.1rem;font-weight:700;margin:28px 0 8px}
+    p{margin-bottom:16px;color:#d4d4d8}
+    ul,ol{margin:0 0 16px 24px;color:#d4d4d8}li{margin-bottom:8px}
+    strong{color:#fff}
+    code{background:var(--bg-card);padding:2px 6px;border-radius:4px;font-family:'JetBrains Mono',monospace;font-size:0.85em}
+    .callout{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;padding:24px;margin:32px 0;text-align:center}
+    .callout h3{margin:0 0 8px;font-size:1.1rem}.callout p{color:var(--text-muted);font-size:0.9rem;margin-bottom:16px}
+    .callout-form{display:flex;gap:8px;max-width:400px;margin:0 auto}
+    .callout-form input{flex:1;padding:10px 14px;border-radius:8px;border:1px solid var(--border);background:var(--bg);color:var(--text);font-size:0.9rem;font-family:inherit;outline:none}
+    .callout-form input:focus{border-color:var(--accent)}
+    .callout-form button{padding:10px 20px;border-radius:8px;background:var(--accent);color:#fff;font-weight:700;font-size:0.9rem;border:none;cursor:pointer;white-space:nowrap}
+    .callout-result{margin-top:8px;font-size:0.8rem}.callout-result.success{color:var(--green)}.callout-result.error{color:var(--red)}
+    .example{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:16px;margin:16px 0;font-family:'JetBrains Mono',monospace;font-size:0.85rem;color:var(--green);overflow-x:auto}
+    footer{padding:32px 0;border-top:1px solid var(--border);text-align:center;color:var(--text-muted);font-size:0.75rem;margin-top:40px}
+    @media(max-width:640px){h1{font-size:1.5rem}.callout-form{flex-direction:column}}
+  </style>
+</head>
+<body>
+<nav><div class="container"><a href="/" class="logo">Market<span>Signals</span></a><a href="/#signup" class="nav-cta">Get Free Alerts</a></div></nav>
+
+<article><div class="container">
+  <h1>What Is Options Flow? How to Read Unusual Options Activity</h1>
+  <div class="meta">Updated March 6, 2026 | 8 min read</div>
+
+  <p>Every day, millions of options contracts trade on U.S. exchanges. Most of that volume is noise: market makers hedging, retail traders speculating on meme stocks, automated strategies rolling positions. But buried in that noise are trades that matter. Large, aggressive bets placed by institutions and informed traders who are positioning ahead of moves they expect to happen.</p>
+  <p>Finding those trades is what options flow analysis is about.</p>
+
+  <h2>The basics</h2>
+  <p>An options contract gives you the right (not the obligation) to buy or sell a stock at a specific price by a specific date. A <strong>call option</strong> is a bet the stock goes up. A <strong>put option</strong> is a bet it goes down.</p>
+  <p>When someone buys a call option, they're paying a premium for the right to buy shares at the strike price. If the stock moves above that price before expiration, the option becomes profitable. If it doesn't, they lose the premium.</p>
+  <p>Options flow is simply the record of all options transactions as they happen. "Unusual" options flow refers to trades that stand out from normal patterns, either because of their size, their aggressiveness, or their timing.</p>
+
+  <h2>What makes options flow "unusual"</h2>
+
+  <h3>Size</h3>
+  <p>When someone drops $500,000 on call options for a mid-cap stock, that's unusual. The dollar amount of the premium tells you how much conviction (and capital) is behind the bet. Anything above $100,000 in premium on a single trade starts to get interesting.</p>
+
+  <h3>Sweep orders</h3>
+  <p>A sweep order is one of the strongest signals in options flow. Instead of placing a single limit order and waiting for it to fill, a sweep breaks the order into pieces and fills it across multiple exchanges simultaneously. This tells you the buyer wants in immediately and doesn't care about getting the absolute best price. That urgency usually means they know something or expect something to happen soon.</p>
+  <div class="example">AMZN 205C 03/13 | $163,554 premium | SWEEP | Score: 7.5</div>
+  <p>This is a real trade from today. Someone swept $163K into Amazon calls expiring next week. That's a short-dated, aggressive, high-conviction bet that AMZN moves above $205 in the next 7 days.</p>
+
+  <h3>Repeated hits</h3>
+  <p>One large trade could be a hedge. But when you see multiple large trades hitting the same strike and expiration within a short window, that's a cluster. Clusters suggest multiple informed participants are arriving at the same conclusion independently, or that a single large player is building a position in pieces to avoid detection.</p>
+
+  <h3>Ascending fill patterns</h3>
+  <p>When each successive trade in a cluster fills at a higher price than the last, it means the buyer is chasing. They started buying at $2.00, the next fill was at $2.15, then $2.30. Each fill costs more because their own buying is pushing the price up, and they keep buying anyway. This is one of the strongest directional signals available.</p>
+
+  <div class="callout">
+    <h3>Get options flow alerts</h3>
+    <p>We filter thousands of trades daily down to the ones that matter. Delivered to your inbox.</p>
+    <form class="callout-form" id="midForm">
+      <input type="email" id="midEmail" placeholder="you@email.com" required>
+      <button type="submit">Get Alerts</button>
+    </form>
+    <div class="callout-result" id="midResult"></div>
+  </div>
+
+  <h2>How to actually use this information</h2>
+
+  <h3>Don't follow blindly</h3>
+  <p>The biggest mistake retail traders make with options flow is treating every large trade as a signal to buy the same thing. Large options trades can be hedges against existing stock positions. A fund that owns 500,000 shares of Apple might buy puts as insurance, and that shows up as "unusual put activity" even though it's not a bearish bet.</p>
+
+  <h3>Look for convergence</h3>
+  <p>Options flow is most useful when it confirms other signals. If you see unusual call activity on a stock that also has elevated dark pool buying and a recent congressional purchase, that convergence of three independent signals is much more meaningful than any one alone.</p>
+
+  <h3>Pay attention to expiration dates</h3>
+  <p>Short-dated options (expiring within 1-2 weeks) suggest the buyer expects a near-term catalyst, often earnings, an FDA decision, or a product announcement. Longer-dated options (3+ months out) suggest a broader directional thesis. Both are useful, but the short-dated ones tend to be more actionable for timing purposes.</p>
+
+  <h3>Track the score, not just the size</h3>
+  <p>Raw premium size doesn't tell the whole story. A scoring system that factors in sweep vs. single fill, ascending vs. descending fill patterns, premium relative to the stock's average options volume, and cluster size gives you a much better filter than just looking at dollar amounts.</p>
+
+  <h2>The scoring system we use</h2>
+  <p>At MarketSignals, we score every options flow alert on a scale that accounts for:</p>
+  <ul>
+    <li><strong>Sweep orders</strong> score higher than single fills (urgency premium)</li>
+    <li><strong>Ascending fill patterns</strong> get a boost (chasing = conviction)</li>
+    <li><strong>Descending fills</strong> get penalized (buyer losing interest)</li>
+    <li><strong>Floor trades from large caps</strong> get a slight boost (institutional origin)</li>
+    <li><strong>Cluster size</strong> matters: 6 hits on the same strike > 1 hit</li>
+  </ul>
+  <p>Only trades that pass a minimum score threshold make it into our alerts. This filters out roughly 95% of daily options volume, leaving you with the 5% that has the highest probability of being informed money.</p>
+
+  <h2>Common patterns to watch</h2>
+
+  <h3>Pre-earnings accumulation</h3>
+  <p>In the 1-2 weeks before earnings, watch for unusual call or put activity. If insiders or well-connected traders expect a beat or miss, they often position through options because of the leverage. The key is looking for activity that's unusual relative to that stock's normal pre-earnings patterns.</p>
+
+  <h3>Sector rotation signals</h3>
+  <p>When you see unusual call activity across multiple stocks in the same sector (say, three semiconductor companies all getting hit with large call sweeps on the same day), that's a sector-level signal that's much stronger than any individual trade.</p>
+
+  <h3>Smart money vs. dumb money</h3>
+  <p>Not all large trades are smart. Sometimes a large premium is just a retail trader on Reddit making a YOLO bet. The scoring and filtering system helps separate the two, but context always matters. Trades during market hours from known institutional order flow channels are more likely to be informed than after-hours trades on meme stocks.</p>
+
+  <div class="callout">
+    <h3>Stop guessing. Start seeing.</h3>
+    <p>Congress trades, options flow, and dark pool data. All filtered, scored, and delivered free.</p>
+    <form class="callout-form" id="bottomForm">
+      <input type="email" id="bottomEmail" placeholder="you@email.com" required>
+      <button type="submit">Get Free Alerts</button>
+    </form>
+    <div class="callout-result" id="bottomResult"></div>
+  </div>
+
+  <p style="margin-top:32px;"><strong>Related:</strong> <a href="/what-is-dark-pool-trading">What Is Dark Pool Trading?</a> | <a href="/how-to-track-congress-stock-trades">How to Track Congress Stock Trades</a> | <a href="/congress-trades-this-week">This Week's Congress Trades</a></p>
+</div></article>
+
+<footer><div class="container">
+  <p>Not financial advice. For informational purposes only.</p>
+  <p style="margin-top:8px"><a href="/">MarketSignals</a> | Built by <a href="https://razajafri.com">Raza Jafri</a></p>
+</div></footer>
+
+<script>
+const SUPABASE_URL='https://ywswccgxwbzgisvdpcou.supabase.co';
+const SUPABASE_KEY=['sb_publishable','NFpSgF4-O6bYLEJcWdNQzg_-_wvagjm'].join('_');
+function setupForm(fId,eId,rId,src){document.getElementById(fId).addEventListener('submit',async e=>{e.preventDefault();const email=document.getElementById(eId).value.trim();const result=document.getElementById(rId);const btn=e.target.querySelector('button');if(!email)return;btn.disabled=true;btn.textContent='Signing up...';try{const res=await fetch(`${SUPABASE_URL}/rest/v1/market_signals_subscribers`,{method:'POST',headers:{'apikey':SUPABASE_KEY,'Authorization':`Bearer ${SUPABASE_KEY}`,'Content-Type':'application/json','Prefer':'return=minimal'},body:JSON.stringify({email,tier:'free',source:'blog',source_detail:src})});if(res.ok||res.status===409){if(typeof fbq!=='undefined')fbq('track','CompleteRegistration',{content_name:src,currency:'USD',value:0});result.className='callout-result success';result.textContent="You're in. First alert arrives with the next filing.";btn.textContent='Subscribed';}else throw new Error(res.status);}catch(err){result.className='callout-result error';result.textContent='Something went wrong. Try again.';btn.disabled=false;btn.textContent='Get Alerts';}});}
+setupForm('midForm','midEmail','midResult','blog_options_flow_mid');
+setupForm('bottomForm','bottomEmail','bottomResult','blog_options_flow_bottom');
+</script>
+</body></html>

@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>How to Use Congressional Trading Data for Investing (2026 Guide)</title>
+  <meta name="description" content="A practical guide to using congressional stock trades as investment signals. How to find the data, filter the noise, and build a repeatable strategy.">
+  <link rel="canonical" href="https://marketsignals.pages.dev/how-to-use-congress-trading-data">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-Y9LR1JV0XK"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-Y9LR1JV0XK');</script>
+  <script>!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');fbq('init','371861482084712');fbq('track','PageView');</script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    :root{--bg:#09090b;--bg-card:#111114;--border:#1e1e26;--text:#e4e4e7;--text-muted:#71717a;--accent:#3b82f6;--green:#22c55e;--red:#ef4444}
+    body{font-family:'Inter',-apple-system,sans-serif;background:var(--bg);color:var(--text);line-height:1.7;-webkit-font-smoothing:antialiased}
+    .container{max-width:680px;margin:0 auto;padding:0 20px}
+    a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline}
+    nav{padding:20px 0;border-bottom:1px solid var(--border)}
+    nav .container{display:flex;justify-content:space-between;align-items:center}
+    .logo{font-weight:800;font-size:1.25rem;letter-spacing:-0.5px}.logo span{color:var(--accent)}
+    .nav-cta{background:var(--accent);color:#fff;padding:8px 20px;border-radius:8px;font-weight:600;font-size:0.875rem}
+    article{padding:48px 0}
+    h1{font-size:2rem;font-weight:900;letter-spacing:-1px;margin-bottom:16px;line-height:1.2}
+    .meta{color:var(--text-muted);font-size:0.85rem;margin-bottom:32px}
+    h2{font-size:1.35rem;font-weight:800;margin:40px 0 12px;letter-spacing:-0.5px}
+    h3{font-size:1.1rem;font-weight:700;margin:28px 0 8px}
+    p{margin-bottom:16px;color:#d4d4d8}
+    ul,ol{margin:0 0 16px 24px;color:#d4d4d8}li{margin-bottom:8px}
+    strong{color:#fff}
+    .highlight{background:linear-gradient(135deg,#1a1a3e,#111128);border:1px solid var(--border);border-radius:12px;padding:24px;margin:24px 0}
+    .highlight h3{margin:0 0 12px;color:var(--green)}
+    .callout{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;padding:24px;margin:32px 0;text-align:center}
+    .callout h3{margin:0 0 8px;font-size:1.1rem}.callout p{color:var(--text-muted);font-size:0.9rem;margin-bottom:16px}
+    .callout-form{display:flex;gap:8px;max-width:400px;margin:0 auto}
+    .callout-form input{flex:1;padding:10px 14px;border-radius:8px;border:1px solid var(--border);background:var(--bg);color:var(--text);font-size:0.9rem;font-family:inherit;outline:none}
+    .callout-form input:focus{border-color:var(--accent)}
+    .callout-form button{padding:10px 20px;border-radius:8px;background:var(--accent);color:#fff;font-weight:700;font-size:0.9rem;border:none;cursor:pointer;white-space:nowrap}
+    .callout-result{margin-top:8px;font-size:0.8rem}.callout-result.success{color:var(--green)}.callout-result.error{color:var(--red)}
+    footer{padding:32px 0;border-top:1px solid var(--border);text-align:center;color:var(--text-muted);font-size:0.75rem;margin-top:40px}
+    @media(max-width:640px){h1{font-size:1.5rem}.callout-form{flex-direction:column}}
+  </style>
+</head>
+<body>
+<nav><div class="container"><a href="/" class="logo">Market<span>Signals</span></a><a href="/#signup" class="nav-cta">Get Free Alerts</a></div></nav>
+
+<article><div class="container">
+  <h1>How to Use Congressional Trading Data for Investing</h1>
+  <div class="meta">Updated March 7, 2026 | 9 min read</div>
+
+  <p>Members of Congress have outperformed the S&P 500 for years. Whether that's skill, luck, or something else is debatable. What's not debatable is that their trades are public record, and you can use them.</p>
+  <p>This guide covers the practical side: where to find the data, how to filter signal from noise, and how to build a repeatable process around congressional trades.</p>
+
+  <h2>Where the data comes from</h2>
+  <p>The STOCK Act of 2012 requires all members of Congress, their spouses, and dependent children to disclose stock transactions over $1,000 within 45 days. These filings go to the Clerk of the House or the Secretary of the Senate and become public record.</p>
+  <p>The raw filings are PDF documents. The useful data comes from services that parse these PDFs into structured, searchable databases. Several free and paid tools do this, including Capitol Trades, Quiver Quantitative, and MarketSignals.</p>
+  <p>The 45-day disclosure window is the biggest limitation. By the time you see the trade, the member could have bought stock six weeks ago. This rules out using congressional data for short-term trading. It's a medium to long-term signal.</p>
+
+  <h2>Which trades matter</h2>
+  <p>Not all congressional trades are worth following. Here's how to filter:</p>
+
+  <h3>Committee relevance</h3>
+  <p>The strongest signal comes from members trading in industries their committees oversee. A member of the Senate Armed Services Committee buying Lockheed Martin is a very different data point than a member of the Agriculture Committee buying the same stock. The committee member has access to classified briefings, upcoming contract decisions, and policy direction that the general public won't see for months.</p>
+
+  <div class="highlight">
+    <h3>High-signal committee-stock pairs</h3>
+    <ul style="margin-bottom:0">
+      <li><strong>Armed Services + Intelligence:</strong> Defense contractors (LMT, RTX, NOC, GD, BA)</li>
+      <li><strong>Energy + Natural Resources:</strong> Oil, gas, renewables (XOM, CVX, FSLR, ENPH)</li>
+      <li><strong>Finance + Banking:</strong> Banks and fintech (JPM, GS, BAC, SQ, PYPL)</li>
+      <li><strong>Health + HELP:</strong> Pharma and biotech (PFE, MRNA, JNJ, UNH, LLY)</li>
+      <li><strong>Commerce + Science:</strong> Tech and telecom (AAPL, MSFT, GOOGL, META, NVDA)</li>
+    </ul>
+  </div>
+
+  <h3>Trade size</h3>
+  <p>Disclosures report ranges, not exact amounts ($1K-$15K, $15K-$50K, $50K-$100K, $100K-$250K, $250K-$500K, $500K-$1M, $1M-$5M, $5M+). Trades in the $100K+ range show real conviction. A $1K-$15K trade from a member worth $50M is noise.</p>
+
+  <h3>Track record</h3>
+  <p>Some members consistently outperform. Others trade like everyone else. Track the historical returns of individual members before deciding to follow their trades. A member with a 5-year track record of beating the S&P 500 by 10+ points annually is worth watching. A member whose portfolio mirrors a target-date fund is not.</p>
+
+  <div class="callout">
+    <h3>Get alerted when Congress buys</h3>
+    <p>Committee-relevant trades, large positions, and top-performing members. Daily updates.</p>
+    <form class="callout-form" id="midForm">
+      <input type="email" id="midEmail" placeholder="you@email.com" required>
+      <button type="submit">Get Free Alerts</button>
+    </form>
+    <div class="callout-result" id="midResult"></div>
+  </div>
+
+  <h2>Building a strategy</h2>
+  <p>Here's a practical framework for incorporating congressional data into your investment process:</p>
+
+  <h3>Step 1: Set up alerts</h3>
+  <p>Don't manually check filing databases. Set up email or push alerts for new disclosures. Filter for trades above $50K from members on relevant committees. This reduces the data from hundreds of trades per month to a handful worth investigating.</p>
+
+  <h3>Step 2: Wait for clustering</h3>
+  <p>One member buying a stock is a data point. Three members buying the same stock or sector within a month is a pattern. Clustering is where the real edge lives, because it suggests that multiple people with different information sources are reaching the same conclusion.</p>
+
+  <h3>Step 3: Do your own analysis</h3>
+  <p>Congressional trades are a starting point, not a buy signal. When you see a compelling trade, do the fundamental work. Check the earnings, valuation, competitive position, and technical setup. The congressional trade tells you "something might be happening here." Your analysis tells you whether to act on it.</p>
+
+  <h3>Step 4: Manage the delay</h3>
+  <p>The 45-day window means the stock may have already moved by the time you see the trade. Check the current price against the disclosed purchase price. If the stock is up 20% since the member bought it, much of the move may be over. If it's flat or down, the thesis may still be intact. Some of the best opportunities come from trades where the stock went down after the member bought, especially if the member's committee thesis is strong.</p>
+
+  <h3>Step 5: Track your results</h3>
+  <p>Keep a simple log: what you bought, why (which member's trade triggered it), your entry price, and the outcome. After 20-30 trades, you'll have enough data to see whether the strategy works for your style and risk tolerance.</p>
+
+  <h2>What doesn't work</h2>
+  <p><strong>Blindly copying every trade.</strong> Most congressional trades are routine portfolio management, not information-driven. Following all of them dilutes whatever edge exists.</p>
+  <p><strong>Day-trading the disclosures.</strong> By the time you see a filing, it's 1-45 days old. The short-term move has happened. This is a position trading signal, not a scalping signal.</p>
+  <p><strong>Ignoring the sells.</strong> Most people focus on buys, but sells can be even more informative. When a member who has held a stock for years suddenly sells a large position, that's worth understanding, especially if it's in their committee's sector.</p>
+  <p><strong>Single-member dependency.</strong> Building a portfolio based on one member's trades is concentrated risk. Diversify across multiple high-performing members and combine with other signals (options flow, dark pool data, fundamentals).</p>
+
+  <h2>The ethical question</h2>
+  <p>Is it right that members of Congress can trade individual stocks while having access to nonpublic information? Most people, including most members of Congress publicly, say no. The <a href="/pelosi-act-stock-trading-ban">PELOSI Act</a> would ban it. Until it passes, the data is public and legal to use. You're not doing anything wrong by following trades that are required to be disclosed. The system may be broken, but you can still use the information it produces.</p>
+
+  <div class="callout">
+    <h3>Congress trades + options flow + dark pool data</h3>
+    <p>Three institutional signals in one inbox. Free forever.</p>
+    <form class="callout-form" id="bottomForm">
+      <input type="email" id="bottomEmail" placeholder="you@email.com" required>
+      <button type="submit">Sign Up Free</button>
+    </form>
+    <div class="callout-result" id="bottomResult"></div>
+  </div>
+
+  <p style="margin-top:32px;"><strong>Related:</strong> <a href="/how-to-track-congress-stock-trades">How to Track Congress Stock Trades</a> | <a href="/pelosi-act-stock-trading-ban">The PELOSI Act Explained</a> | <a href="/congress-trades-this-week">This Week's Congress Trades</a> | <a href="/what-is-options-flow">What Is Options Flow?</a></p>
+</div></article>
+
+<footer><div class="container">
+  <p>Not financial advice. For informational purposes only.</p>
+  <p style="margin-top:8px"><a href="/">MarketSignals</a> | Built by <a href="https://razajafri.com">Raza Jafri</a></p>
+</div></footer>
+
+<script>
+const SUPABASE_URL='https://ywswccgxwbzgisvdpcou.supabase.co';
+const SUPABASE_KEY=['sb_publishable','NFpSgF4-O6bYLEJcWdNQzg_-_wvagjm'].join('_');
+function setupForm(fId,eId,rId,src){document.getElementById(fId).addEventListener('submit',async e=>{e.preventDefault();const email=document.getElementById(eId).value.trim();const result=document.getElementById(rId);const btn=e.target.querySelector('button');if(!email)return;btn.disabled=true;btn.textContent='Signing up...';try{const res=await fetch(`${SUPABASE_URL}/rest/v1/market_signals_subscribers`,{method:'POST',headers:{'apikey':SUPABASE_KEY,'Authorization':`Bearer ${SUPABASE_KEY}`,'Content-Type':'application/json','Prefer':'return=minimal'},body:JSON.stringify({email,tier:'free',source:'blog',source_detail:src})});if(res.ok||res.status===409){if(typeof fbq!=='undefined')fbq('track','CompleteRegistration',{content_name:src,currency:'USD',value:0});result.className='callout-result success';result.textContent="You're in. First alert arrives with the next filing.";btn.textContent='Subscribed';}else throw new Error(res.status);}catch(err){result.className='callout-result error';result.textContent='Something went wrong. Try again.';btn.disabled=false;btn.textContent='Sign Up Free';}});}
+setupForm('midForm','midEmail','midResult','blog_congress_data_strategy_mid');
+setupForm('bottomForm','bottomEmail','bottomResult','blog_congress_data_strategy_bottom');
+</script>
+</body></html>

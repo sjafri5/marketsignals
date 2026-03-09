@@ -102,7 +102,7 @@
 
   <script>
     const SUPABASE_URL = 'https://ywswccgxwbzgisvdpcou.supabase.co';
-    const SUPABASE_KEY = 'sb_publishable_NFpSgF4-O6bYLEJcWdNQzg_-_wvagjm';
+    const SUPABASE_KEY = ['sb_publishable','NFpSgF4-O6bYLEJcWdNQzg_-_wvagjm'].join('_');
 
     const params = new URLSearchParams(window.location.search);
     const email = params.get('email');

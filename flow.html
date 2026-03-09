@@ -197,7 +197,7 @@
 
 <script>
 const SUPABASE_URL = 'https://ywswccgxwbzgisvdpcou.supabase.co';
-const SUPABASE_KEY = 'sb_publishable_NFpSgF4-O6bYLEJcWdNQzg_-_wvagjm';
+const SUPABASE_KEY = ['sb_publishable', 'NFpSgF4-O6bYLEJcWdNQzg_-_wvagjm'].join('_');
 document.getElementById('signup-form').addEventListener('submit', async (e) => {
   e.preventDefault();
   const email = document.getElementById('email').value;

@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>How to Read Dark Pool Prints: A Practical Guide for Retail Traders</title>
+  <meta name="description" content="Learn how to interpret dark pool prints, block trades, and hidden institutional activity. Practical guide with real examples of what to look for.">
+  <link rel="canonical" href="https://marketsignals.pages.dev/how-to-read-dark-pool-prints">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-Y9LR1JV0XK"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-Y9LR1JV0XK');</script>
+  <script>!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');fbq('init','371861482084712');fbq('track','PageView');</script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    :root{--bg:#09090b;--bg-card:#111114;--border:#1e1e26;--text:#e4e4e7;--text-muted:#71717a;--accent:#3b82f6;--green:#22c55e;--red:#ef4444}
+    body{font-family:'Inter',-apple-system,sans-serif;background:var(--bg);color:var(--text);line-height:1.7;-webkit-font-smoothing:antialiased}
+    .container{max-width:680px;margin:0 auto;padding:0 20px}
+    a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline}
+    nav{padding:20px 0;border-bottom:1px solid var(--border)}
+    nav .container{display:flex;justify-content:space-between;align-items:center}
+    .logo{font-weight:800;font-size:1.25rem;letter-spacing:-0.5px}.logo span{color:var(--accent)}
+    .nav-cta{background:var(--accent);color:#fff;padding:8px 20px;border-radius:8px;font-weight:600;font-size:0.875rem}
+    article{padding:48px 0}
+    h1{font-size:2rem;font-weight:900;letter-spacing:-1px;margin-bottom:16px;line-height:1.2}
+    .meta{color:var(--text-muted);font-size:0.85rem;margin-bottom:32px}
+    h2{font-size:1.35rem;font-weight:800;margin:40px 0 12px;letter-spacing:-0.5px}
+    h3{font-size:1.1rem;font-weight:700;margin:28px 0 8px}
+    p{margin-bottom:16px;color:#d4d4d8}
+    ul,ol{margin:0 0 16px 24px;color:#d4d4d8}li{margin-bottom:8px}
+    strong{color:#fff}
+    code{font-family:'JetBrains Mono',monospace;background:#1a1a2e;padding:2px 6px;border-radius:4px;font-size:0.85em;color:var(--accent)}
+    .example{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;padding:24px;margin:24px 0}
+    .example h3{margin:0 0 12px;color:var(--accent)}
+    .callout{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;padding:24px;margin:32px 0;text-align:center}
+    .callout h3{margin:0 0 8px;font-size:1.1rem}.callout p{color:var(--text-muted);font-size:0.9rem;margin-bottom:16px}
+    .callout-form{display:flex;gap:8px;max-width:400px;margin:0 auto}
+    .callout-form input{flex:1;padding:10px 14px;border-radius:8px;border:1px solid var(--border);background:var(--bg);color:var(--text);font-size:0.9rem;font-family:inherit;outline:none}
+    .callout-form input:focus{border-color:var(--accent)}
+    .callout-form button{padding:10px 20px;border-radius:8px;background:var(--accent);color:#fff;font-weight:700;font-size:0.9rem;border:none;cursor:pointer;white-space:nowrap}
+    .callout-result{margin-top:8px;font-size:0.8rem}.callout-result.success{color:var(--green)}.callout-result.error{color:var(--red)}
+    footer{padding:32px 0;border-top:1px solid var(--border);text-align:center;color:var(--text-muted);font-size:0.75rem;margin-top:40px}
+    @media(max-width:640px){h1{font-size:1.5rem}.callout-form{flex-direction:column}}
+  </style>
+</head>
+<body>
+<nav><div class="container"><a href="/" class="logo">Market<span>Signals</span></a><a href="/#signup" class="nav-cta">Get Free Alerts</a></div></nav>
+
+<article><div class="container">
+  <h1>How to Read Dark Pool Prints: A Practical Guide</h1>
+  <div class="meta">Updated March 7, 2026 | 8 min read</div>
+
+  <p>Dark pool prints are the footprints that institutional traders leave behind. They execute trades off-exchange to avoid moving the market, but the trades still get reported to the tape. If you know how to read them, you can see what the big money is doing before the price reflects it.</p>
+  <p>This guide covers the practical mechanics: what each field means, which prints matter, and which ones are noise.</p>
+
+  <h2>What is a dark pool print?</h2>
+  <p>When a trade executes on a dark pool (also called an Alternative Trading System or ATS), it gets reported to the consolidated tape within 10 seconds. The report includes the ticker, price, size, time, and which ATS handled it. What it doesn't include is the direction. You don't know if the institution was buying or selling.</p>
+  <p>This is the fundamental challenge of dark pool analysis: you're seeing the transaction, not the intent. Everything from here is about inferring intent from context.</p>
+
+  <h2>The anatomy of a dark pool print</h2>
+
+  <div class="example">
+    <h3>Example print</h3>
+    <p><code>AAPL | 258.50 | 50,000 shares | $12.9M | XDARK | 14:32:17</code></p>
+    <p style="margin-bottom:0"><strong>Ticker:</strong> AAPL. <strong>Price:</strong> $258.50 (compare to current bid/ask). <strong>Size:</strong> 50,000 shares (is this large for AAPL? Check average block size). <strong>Notional:</strong> $12.9M (dollar value matters more than share count). <strong>Venue:</strong> XDARK (which ATS). <strong>Time:</strong> 2:32 PM (afternoon prints carry more weight).</p>
+  </div>
+
+  <h2>What makes a print meaningful</h2>
+  <p>Not all dark pool prints are worth your attention. Most are routine portfolio rebalancing, index reconstitution, or corporate buyback programs. The prints that signal something are the ones that break the pattern.</p>
+
+  <h3>1. Size relative to average</h3>
+  <p>A 50,000 share block in AAPL is routine. A 50,000 share block in a mid-cap with 2M average daily volume is a major event. Always compare block size to the stock's normal dark pool activity. A print that's 3x or more the average block size for that ticker is worth investigating.</p>
+
+  <h3>2. Price relative to NBBO</h3>
+  <p>The National Best Bid and Offer (NBBO) is the current best price available on lit exchanges. Dark pool prints that execute <strong>at or above the ask</strong> suggest the buyer was aggressive and willing to pay up. Prints <strong>at or below the bid</strong> suggest aggressive selling. Prints at the midpoint are neutral and often represent negotiated crosses.</p>
+
+  <h3>3. Clustering</h3>
+  <p>One large print is a data point. Five large prints in the same ticker over two days is a signal. Institutional accumulation happens over time because they can't buy their full position at once without moving the market. When you see repeated dark pool activity in a name that doesn't normally have it, someone is building a position.</p>
+
+  <div class="callout">
+    <h3>Get dark pool alerts in your inbox</h3>
+    <p>Unusual block trades, institutional accumulation patterns, and sector rotation signals.</p>
+    <form class="callout-form" id="midForm">
+      <input type="email" id="midEmail" placeholder="you@email.com" required>
+      <button type="submit">Get Free Alerts</button>
+    </form>
+    <div class="callout-result" id="midResult"></div>
+  </div>
+
+  <h3>4. Timing</h3>
+  <p>Prints in the first 30 minutes of the trading day are often noise from overnight order flow clearing. Prints in the last hour carry more weight because institutions are making deliberate decisions about positioning into the close. Prints around 3:50 PM (right before MOC orders lock in) are especially interesting.</p>
+
+  <h3>5. Sector patterns</h3>
+  <p>When you see large dark pool prints across multiple stocks in the same sector on the same day, that's likely a sector rotation trade. A fund is moving out of one sector and into another. This is one of the most actionable dark pool signals because it tells you about positioning at the portfolio level, not just individual stock conviction.</p>
+
+  <h2>Common traps</h2>
+  <p><strong>Buyback programs:</strong> Companies executing share repurchase programs generate consistent dark pool activity. These prints look like accumulation but they're mechanical and don't indicate new information. Check if the company has an active buyback before getting excited about repeated dark pool prints.</p>
+  <p><strong>Index rebalancing:</strong> Around quarterly rebalancing dates (especially S&P 500 changes), dark pool volume spikes as index funds adjust. These prints are forced and don't reflect conviction.</p>
+  <p><strong>ETF creation/redemption:</strong> Authorized participants create and redeem ETF shares through large basket trades that often route through dark pools. If you see simultaneous prints across 30 different stocks, it's probably an ETF basket, not 30 separate conviction trades.</p>
+
+  <h2>Building a workflow</h2>
+  <p>The practical approach to dark pool data is not to watch every print. It's to set up filters and look for anomalies.</p>
+  <ol>
+    <li><strong>Filter by notional value.</strong> Set a minimum threshold (e.g., $5M+ for large caps, $1M+ for mid caps). Everything below that is noise.</li>
+    <li><strong>Track repeat names.</strong> Keep a simple log of which tickers show up with large prints. After 3+ appearances in a week, that ticker deserves a closer look.</li>
+    <li><strong>Cross-reference with options flow.</strong> Dark pool accumulation plus unusual call buying in the same name is a much stronger signal than either alone. The institution might be buying stock in the dark pool and hedging or leveraging with options on the lit market.</li>
+    <li><strong>Check the news.</strong> If there's a dark pool print and also a recent SEC filing, earnings report, or analyst upgrade, the print might just be the market reacting to public information. The most interesting prints are the ones with no obvious catalyst.</li>
+  </ol>
+
+  <h2>The bottom line</h2>
+  <p>Dark pool data gives you a window into institutional activity that you can't see on the order book. But it's a noisy signal. The value comes from filtering, cross-referencing, and tracking patterns over time, not from chasing individual prints.</p>
+  <p>Used correctly, dark pool analysis is one more edge in a toolkit that includes options flow, congressional trades, and fundamental research. Used in isolation, it's just a stream of numbers.</p>
+
+  <div class="callout">
+    <h3>Congress trades + options flow + dark pool data</h3>
+    <p>All three signals in one place. Updated daily. Free.</p>
+    <form class="callout-form" id="bottomForm">
+      <input type="email" id="bottomEmail" placeholder="you@email.com" required>
+      <button type="submit">Sign Up Free</button>
+    </form>
+    <div class="callout-result" id="bottomResult"></div>
+  </div>
+
+  <p style="margin-top:32px;"><strong>Related:</strong> <a href="/what-is-dark-pool-trading">What Is Dark Pool Trading?</a> | <a href="/what-is-options-flow">What Is Options Flow?</a> | <a href="/pelosi-act-stock-trading-ban">The PELOSI Act Explained</a></p>
+</div></article>
+
+<footer><div class="container">
+  <p>Not financial advice. For informational purposes only.</p>
+  <p style="margin-top:8px"><a href="/">MarketSignals</a> | Built by <a href="https://razajafri.com">Raza Jafri</a></p>
+</div></footer>
+
+<script>
+const SUPABASE_URL='https://ywswccgxwbzgisvdpcou.supabase.co';
+const SUPABASE_KEY=['sb_publishable','NFpSgF4-O6bYLEJcWdNQzg_-_wvagjm'].join('_');
+function setupForm(fId,eId,rId,src){document.getElementById(fId).addEventListener('submit',async e=>{e.preventDefault();const email=document.getElementById(eId).value.trim();const result=document.getElementById(rId);const btn=e.target.querySelector('button');if(!email)return;btn.disabled=true;btn.textContent='Signing up...';try{const res=await fetch(`${SUPABASE_URL}/rest/v1/market_signals_subscribers`,{method:'POST',headers:{'apikey':SUPABASE_KEY,'Authorization':`Bearer ${SUPABASE_KEY}`,'Content-Type':'application/json','Prefer':'return=minimal'},body:JSON.stringify({email,tier:'free',source:'blog',source_detail:src})});if(res.ok||res.status===409){if(typeof fbq!=='undefined')fbq('track','CompleteRegistration',{content_name:src,currency:'USD',value:0});result.className='callout-result success';result.textContent="You're in. First alert arrives with the next filing.";btn.textContent='Subscribed';}else throw new Error(res.status);}catch(err){result.className='callout-result error';result.textContent='Something went wrong. Try again.';btn.disabled=false;btn.textContent='Sign Up Free';}});}
+setupForm('midForm','midEmail','midResult','blog_dark_pool_prints_mid');
+setupForm('bottomForm','bottomEmail','bottomResult','blog_dark_pool_prints_bottom');
+</script>
+</body></html>

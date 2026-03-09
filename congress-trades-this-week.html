@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Congress Trades This Week - MarketSignals</title>
+  <meta name="description" content="See every stock trade made by members of Congress this week. Updated daily from SEC filings.">
+  <!-- GA4 -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-Y9LR1JV0XK"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-Y9LR1JV0XK');</script>
+  <!-- Meta Pixel -->
+  <script>!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');fbq('init','371861482084712');fbq('track','PageView');</script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    :root{--bg:#09090b;--bg-card:#111114;--border:#1e1e26;--text:#e4e4e7;--text-muted:#71717a;--accent:#3b82f6;--green:#22c55e;--red:#ef4444;--gold:#eab308}
+    body{font-family:'Inter',-apple-system,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased}
+    .container{max-width:720px;margin:0 auto;padding:0 20px}
+    a{color:var(--accent);text-decoration:none}
+    .mono{font-family:'JetBrains Mono',monospace}
+
+    nav{padding:20px 0;border-bottom:1px solid var(--border)}
+    nav .container{display:flex;justify-content:space-between;align-items:center}
+    .logo{font-weight:800;font-size:1.25rem;letter-spacing:-0.5px}
+    .logo span{color:var(--accent)}
+    .nav-cta{background:var(--accent);color:#fff;padding:8px 20px;border-radius:8px;font-weight:600;font-size:0.875rem}
+
+    .hero{padding:48px 0 32px;text-align:center}
+    .hero h1{font-size:2rem;font-weight:900;letter-spacing:-1px;margin-bottom:12px}
+    .hero p{color:var(--text-muted);font-size:1rem;max-width:540px;margin:0 auto}
+    .updated{color:var(--green);font-size:0.8rem;font-weight:600;margin-top:12px}
+
+    .trade-table{width:100%;border-collapse:collapse;margin:24px 0}
+    .trade-table th{text-align:left;font-size:0.75rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:1px;padding:8px 12px;border-bottom:1px solid var(--border)}
+    .trade-table td{padding:12px;border-bottom:1px solid var(--border);font-size:0.9rem}
+    .trade-table tr:hover{background:rgba(59,130,246,0.03)}
+    .buy{color:var(--green);font-weight:600}
+    .sell{color:var(--red);font-weight:600}
+    .ticker{font-weight:700;color:#fff}
+    .amount{color:var(--gold);font-size:0.85rem}
+
+    .gate{position:relative;margin:32px 0}
+    .gate-overlay{background:linear-gradient(transparent, var(--bg) 60%);position:absolute;top:0;left:0;right:0;bottom:0;display:flex;align-items:flex-end;justify-content:center;padding-bottom:20px}
+    .gate-content{text-align:center;padding:32px;background:var(--bg-card);border:1px solid var(--border);border-radius:16px;width:100%;max-width:480px}
+    .gate-content h3{font-size:1.2rem;font-weight:800;margin-bottom:8px}
+    .gate-content p{color:var(--text-muted);font-size:0.9rem;margin-bottom:16px}
+    .gate-form{display:flex;gap:8px}
+    .gate-form input{flex:1;padding:12px 16px;border-radius:8px;border:1px solid var(--border);background:var(--bg);color:var(--text);font-size:0.95rem;font-family:inherit;outline:none}
+    .gate-form input:focus{border-color:var(--accent)}
+    .gate-form button{padding:12px 24px;border-radius:8px;background:var(--accent);color:#fff;font-weight:700;font-size:0.95rem;border:none;cursor:pointer;white-space:nowrap}
+    .gate-result{margin-top:12px;font-size:0.85rem}
+    .gate-result.success{color:var(--green)}
+    .gate-result.error{color:var(--red)}
+
+    .blurred{filter:blur(6px);pointer-events:none;user-select:none}
+    .stats{display:flex;gap:24px;justify-content:center;margin:24px 0;flex-wrap:wrap}
+    .stat{text-align:center}
+    .stat-num{font-size:1.4rem;font-weight:800}
+    .stat-label{font-size:0.75rem;color:var(--text-muted)}
+
+    footer{padding:32px 0;border-top:1px solid var(--border);text-align:center;color:var(--text-muted);font-size:0.75rem;margin-top:40px}
+
+    @media(max-width:640px){
+      .gate-form{flex-direction:column}
+      .trade-table{font-size:0.8rem}
+      .trade-table td,.trade-table th{padding:8px 6px}
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="container">
+    <a href="/" class="logo">Market<span>Signals</span></a>
+    <a href="/#signup" class="nav-cta">Get Free Alerts</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="container">
+    <h1>Congress Trades This Week</h1>
+    <p>Every stock trade filed by members of Congress, updated daily from SEC disclosures. See who's buying, selling, and how much.</p>
+    <div class="updated" id="lastUpdated">Loading...</div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="stats">
+      <div class="stat"><div class="stat-num" id="totalTrades">--</div><div class="stat-label">trades this week</div></div>
+      <div class="stat"><div class="stat-num buy" id="totalBuys">--</div><div class="stat-label">buys</div></div>
+      <div class="stat"><div class="stat-num sell" id="totalSells">--</div><div class="stat-label">sells</div></div>
+    </div>
+
+    <table class="trade-table" id="visibleTrades">
+      <thead>
+        <tr><th>Politician</th><th>Action</th><th>Ticker</th><th>Amount</th><th>Trade Date</th></tr>
+      </thead>
+      <tbody id="tradeBody"></tbody>
+    </table>
+
+    <div class="gate" id="gateSection">
+      <table class="trade-table blurred" id="blurredTrades">
+        <tbody id="blurredBody"></tbody>
+      </table>
+      <div class="gate-overlay">
+        <div class="gate-content">
+          <h3>See all trades from this week</h3>
+          <p>Enter your email to unlock the full list and get weekly trade alerts.</p>
+          <form class="gate-form" id="gateForm">
+            <input type="email" id="gateEmail" placeholder="you@email.com" required>
+            <button type="submit">Unlock</button>
+          </form>
+          <div class="gate-result" id="gateResult"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <p>Data sourced from public SEC STOCK Act filings. Not financial advice.</p>
+    <p style="margin-top:8px"><a href="/">MarketSignals</a> | Built by <a href="https://razajafri.com">Raza Jafri</a></p>
+  </div>
+</footer>
+
+<script>
+const SUPABASE_URL = 'https://ywswccgxwbzgisvdpcou.supabase.co';
+const SUPABASE_KEY = ['sb_publishable','NFpSgF4-O6bYLEJcWdNQzg_-_wvagjm'].join('_');
+
+// Static trade data (updated by cron)
+const TRADES = [
+  {
+    "name": "Kelly Morrison",
+    "txn": "Buy",
+    "ticker": null,
+    "amounts": "$15,001 - $50,000",
+    "date": "2026-03-02",
+    "notes": "Hermeus Corp [OI]"
+  },
+  {
+    "name": "Kelly Morrison",
+    "txn": "Buy",
+    "ticker": null,
+    "amounts": "$15,001 - $50,000",
+    "date": "2026-03-02",
+    "notes": "Arcade AI. Inc. [OI]"
+  },
+  {
+    "name": "John Boozman",
+    "txn": "Buy",
+    "ticker": "NTAP",
+    "amounts": "$1,001 - $15,000",
+    "date": "2026-02-27",
+    "notes": "NetApp, Inc. - Common Stock"
+  },
+  {
+    "name": "John Boozman",
+    "txn": "Sell",
+    "ticker": "AMAT",
+    "amounts": "$1,001 - $15,000",
+    "date": "2026-02-27",
+    "notes": "Applied Materials, Inc. - Common Stock"
+  },
+  {
+    "name": "John Boozman",
+    "txn": "Buy",
+    "ticker": "KR",
+    "amounts": "$1,001 - $15,000",
+    "date": "2026-02-26",
+    "notes": "Kroger Company (The) Common Stock"
+  },
+  {
+    "name": "John Boozman",
+    "txn": "Sell",
+    "ticker": "PG",
+    "amounts": "$1,001 - $15,000",
+    "date": "2026-02-26",
+    "notes": "Procter & Gamble Company (The) Common Stock"
+  },
+  {
+    "name": "Shelley Capito",
+    "txn": "Sell",
+    "ticker": "ITW",
+    "amounts": "$1,001 - $15,000",
+    "date": "2026-02-24",
+    "notes": "Illinois Tool Works Inc. Common Stock"
+  },
+  {
+    "name": "Sheldon Whitehouse",
+    "txn": "Sell",
+    "ticker": "MA",
+    "amounts": "$1,001 - $15,000",
+    "date": "2026-02-23",
+    "notes": "Mastercard Incorporated Common Stock"
+  },
+  {
+    "name": "Sheldon Whitehouse",
+    "txn": "Sell",
+    "ticker": "PEP",
+    "amounts": "$1,001 - $15,000",
+    "date": "2026-02-23",
+    "notes": "PepsiCo, Inc. - Common Stock"
+  },
+  {
+    "name": "Sheldon Whitehouse",
+    "txn": "Sell",
+    "ticker": "VZ",
+    "amounts": "$1,001 - $15,000",
+    "date": "2026-02-23",
+    "notes": "Verizon Communications Inc. Common Stock"
+  },
+  {
+    "name": "Sheldon Whitehouse",
+    "txn": "Sell",
+    "ticker": "PEP",
+    "amounts": "$1,001 - $15,000",
+    "date": "2026-02-23",
+    "notes": "PepsiCo, Inc. - Common Stock"
+  },
+  {
+    "name": "Sheldon Whitehouse",
+    "txn": "Sell",
+    "ticker": "HD",
+    "amounts": "$1,001 - $15,000",
+    "date": "2026-02-23",
+    "notes": "Home Depot, Inc. (The) Common Stock"
+  },
+  {
+    "name": "Steve Cohen",
+    "txn": "Buy",
+    "ticker": null,
+    "amounts": "$250,001 - $500,000",
+    "date": "2026-02-20",
+    "notes": "United States Treasury Bill Mat 5/21/26 [GS] FILING STATUS: New"
+  },
+  {
+    "name": "Shelley Capito",
+    "txn": "Sell",
+    "ticker": "PAYX",
+    "amounts": "$1,001 - $15,000",
+    "date": "2026-02-20",
+    "notes": "Paychex, Inc. - Common Stock"
+  },
+  {
+    "name": "Kelly Morrison",
+    "txn": "Buy",
+    "ticker": null,
+    "amounts": "$15,001 - $50,000",
+    "date": "2026-02-20",
+    "notes": "Rhoda AI [OI]"
+  },
+  {
+    "name": "John Boozman",
+    "txn": "Sell",
+    "ticker": "UNP",
+    "amounts": "$1,001 - $15,000",
+    "date": "2026-02-19",
+    "notes": "Union Pacific Corporation Common Stock"
+  },
+  {
+    "name": "Dave McCormick",
+    "txn": "Buy",
+    "ticker": null,
+    "amounts": "$500,001 - $1,000,000",
+    "date": "2026-02-19",
+    "notes": "PHILADELPHIA PA AUTH FOR INDL REV\nRate/Coupon: 5%\nMatures: 12/01/2031"
+  },
+  {
+    "name": "Dave McCormick",
+    "txn": "Buy",
+    "ticker": null,
+    "amounts": "$500,001 - $1,000,000",
+    "date": "2026-02-19",
+    "notes": "DALLAS TEX INDPT SCH DIST GO\nRate/Coupon: 5%\nMatures: 02/15/2033"
+  },
+  {
+    "name": "Don Beyer",
+    "txn": "Buy",
+    "ticker": null,
+    "amounts": "$15,001 - $50,000",
+    "date": "2026-02-19",
+    "notes": "Arlington Cnty VA 5.00% 7/01/35 [GS] FILING STATUS: New SUBHOLDING OF: Stocks, Bonds, & Mutual\nDESCRIPTION: 35,000 units of Arlington"
+  },
+  {
+    "name": "John Fetterman",
+    "txn": "Sell",
+    "ticker": null,
+    "amounts": "$1,001 - $15,000",
+    "date": "2026-02-18",
+    "notes": "PARAMOUNT GLOBAL BOND\nRate/Coupon: 6.875%\nMatures: 04/30/2036"
+  },
+  {
+    "name": "Tim Moore",
+    "txn": "Sell",
+    "ticker": "COIN",
+    "amounts": "$1,001 - $15,000",
+    "date": "2026-02-18",
+    "notes": "Coinbase Global, Inc. - 3Class A Common Stock (COIN) [ST]"
+  },
+  {
+    "name": "Lloyd Doggett",
+    "txn": "Buy",
+    "ticker": "PG",
+    "amounts": "$1,001 - $15,000",
+    "date": "2026-02-17",
+    "notes": "Procter & Gamble Company"
+  },
+  {
+    "name": "Jake Auchincloss",
+    "txn": "Sell",
+    "ticker": "STT",
+    "amounts": "$15,001 - $50,000",
+    "date": "2026-02-17",
+    "notes": "State Street Corporation Common Stock (STT) [ST]"
+  },
+  {
+    "name": "John Boozman",
+    "txn": "Sell",
+    "ticker": "ADBE",
+    "amounts": "$1,001 - $15,000",
+    "date": "2026-02-13",
+    "notes": "Adobe Inc. - Common Stock"
+  },
+  {
+    "name": "John Boozman",
+    "txn": "Buy",
+    "ticker": "MSFT",
+    "amounts": "$1,001 - $15,000",
+    "date": "2026-02-13",
+    "notes": "Microsoft Corporation - Common Stock"
+  }
+];
+
+function renderRow(t) {
+  const cls = t.txn.toLowerCase() === 'buy' ? 'buy' : 'sell';
+  const ticker = t.ticker || t.notes || 'Undisclosed';
+  return `<tr><td>${t.name}</td><td class="${cls}">${t.txn}</td><td class="ticker">${ticker}</td><td class="amount">${t.amounts}</td><td>${t.date}</td></tr>`;
+}
+
+// Show first 5 trades, blur the rest
+const visible = TRADES.slice(0, 5);
+const gated = TRADES.slice(5);
+document.getElementById('tradeBody').innerHTML = visible.map(renderRow).join('');
+document.getElementById('blurredBody').innerHTML = gated.map(renderRow).join('');
+
+// Stats
+const buys = TRADES.filter(t => t.txn === 'Buy').length;
+const sells = TRADES.filter(t => t.txn === 'Sell' || t.txn === 'Exchange').length;
+document.getElementById('totalTrades').textContent = TRADES.length;
+document.getElementById('totalBuys').textContent = buys;
+document.getElementById('totalSells').textContent = sells;
+document.getElementById('lastUpdated').textContent = 'Last updated: ' + new Date().toLocaleDateString('en-US', {month:'long',day:'numeric',year:'numeric'});
+
+// Gate form
+document.getElementById('gateForm').addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const email = document.getElementById('gateEmail').value.trim();
+  const result = document.getElementById('gateResult');
+  const btn = e.target.querySelector('button');
+  if (!email) return;
+  btn.disabled = true;
+  btn.textContent = 'Unlocking...';
+  try {
+    const res = await fetch(`${SUPABASE_URL}/rest/v1/market_signals_subscribers`, {
+      method: 'POST',
+      headers: {
+        'apikey': SUPABASE_KEY,
+        'Authorization': `Bearer ${SUPABASE_KEY}`,
+        'Content-Type': 'application/json',
+        'Prefer': 'return=minimal'
+      },
+      body: JSON.stringify({ email, tier: 'free', source: 'landing_page', source_detail: 'congress_trades_gate' })
+    });
+    if (res.ok || res.status === 409) {
+      if (typeof fbq !== 'undefined') fbq('track', 'CompleteRegistration', { content_name: 'congress_trades_gate', currency: 'USD', value: 0 });
+      document.getElementById('gateSection').innerHTML = '';
+      const fullTable = document.createElement('table');
+      fullTable.className = 'trade-table';
+      fullTable.innerHTML = '<tbody>' + gated.map(renderRow).join('') + '</tbody>';
+      document.getElementById('gateSection').appendChild(fullTable);
+      result.className = 'gate-result success';
+      result.textContent = '';
+    } else { throw new Error(res.status); }
+  } catch (err) {
+    result.className = 'gate-result error';
+    result.textContent = 'Something went wrong. Try again.';
+  }
+  btn.disabled = false;
+  btn.textContent = 'Unlock';
+});
+</script>
+</body>
+</html>

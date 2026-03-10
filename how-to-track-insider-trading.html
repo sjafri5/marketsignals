@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="How to track insider trading in stocks using SEC Form 4 filings, congress trades, and institutional signals. Free tools and data sources for 2026.">
+  <title>How to Track Insider Trading in Stocks | Free Tools & Data (2026)</title>
+  <link rel="canonical" href="https://marketsignals.pages.dev/how-to-track-insider-trading">
+  <style>
+    :root { --bg: #0a0f1a; --card: #111827; --text: #e2e8f0; --muted: #94a3b8; --accent: #3b82f6; --green: #22c55e; --border: #1e293b; }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: var(--bg); color: var(--text); line-height: 1.7; }
+    .container { max-width: 720px; margin: 0 auto; padding: 40px 20px; }
+    h1 { font-size: 2rem; margin-bottom: 8px; line-height: 1.3; }
+    h2 { font-size: 1.4rem; margin: 32px 0 12px; color: var(--accent); }
+    h3 { font-size: 1.1rem; margin: 20px 0 8px; }
+    p { margin-bottom: 16px; color: var(--muted); }
+    a { color: var(--accent); }
+    .meta { color: var(--muted); font-size: 0.85rem; margin-bottom: 32px; }
+    ul, ol { margin: 0 0 16px 24px; color: var(--muted); }
+    li { margin-bottom: 8px; }
+    .callout { background: var(--card); border-left: 3px solid var(--accent); padding: 16px; margin: 20px 0; border-radius: 4px; }
+    .callout p { margin: 0; }
+    table { width: 100%; border-collapse: collapse; margin: 16px 0; }
+    th, td { padding: 10px 12px; text-align: left; border-bottom: 1px solid var(--border); color: var(--muted); }
+    th { color: var(--text); font-weight: 600; }
+    .cta-box { background: var(--card); border: 1px solid var(--border); padding: 24px; text-align: center; margin: 32px 0; border-radius: 8px; }
+    .cta-box a { display: inline-block; background: var(--accent); color: white; padding: 12px 24px; border-radius: 6px; text-decoration: none; font-weight: 600; }
+    .nav { padding: 16px 20px; border-bottom: 1px solid var(--border); }
+    .nav a { color: var(--text); text-decoration: none; font-weight: 600; }
+  </style>
+  <!-- GA4 -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-Y9LR1JV0XK"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-Y9LR1JV0XK');</script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "How to Track Insider Trading in Stocks",
+    "description": "How to track insider trading using SEC Form 4 filings, congress trades, and institutional signals.",
+    "datePublished": "2026-03-10",
+    "dateModified": "2026-03-10",
+    "author": { "@type": "Organization", "name": "Market Signals" }
+  }
+  </script>
+</head>
+<body>
+<div class="nav"><a href="/">Market Signals</a> / <a href="/blog">Blog</a></div>
+<div class="container">
+
+<h1>How to Track Insider Trading in Stocks</h1>
+<p class="meta">Published March 10, 2026 | Updated March 2026</p>
+
+<p>Corporate insiders, by law, must report their stock trades to the SEC within two business days. This creates a public data stream that anyone can use. The challenge is knowing where to look, what matters, and how to separate signal from noise.</p>
+
+<p>This guide covers every source of insider trading data available to retail investors in 2026, from free SEC filings to paid institutional tools.</p>
+
+<h2>What Counts as Insider Trading Data</h2>
+
+<p>There are three categories of "insider" activity worth tracking, each with different data sources and different signal quality:</p>
+
+<h3>1. Corporate Insider Filings (SEC Form 4)</h3>
+<p>When a CEO, CFO, board member, or 10% shareholder buys or sells their own company's stock, they file a Form 4 with the SEC. These filings are public and available within 48 hours of the trade.</p>
+
+<p>Why it matters: A CEO buying $2M of their own stock with personal money is one of the strongest bullish signals in the market. They have the most information about the company's future. Insider selling is less useful because executives sell for many reasons (taxes, diversification, buying a house).</p>
+
+<div class="callout">
+<p><strong>Key filter:</strong> Focus on open-market purchases by C-suite executives. Ignore option exercises, planned 10b5-1 sales, and small transactions under $100K. The signal is in discretionary buys.</p>
+</div>
+
+<p>Free tools for Form 4 data:</p>
+<ul>
+<li><a href="https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&type=4&dateb=&owner=include&count=40" rel="nofollow">SEC EDGAR</a> (raw filings, free but hard to read)</li>
+<li><a href="http://openinsider.com/" rel="nofollow">OpenInsider</a> (best free screener for Form 4 data)</li>
+<li><a href="https://www.insiderscreener.com/" rel="nofollow">InsiderScreener</a> (filters by insider role, transaction type)</li>
+</ul>
+
+<h3>2. Congressional Stock Trades</h3>
+<p>Members of Congress must disclose their stock trades within 45 days under the STOCK Act. Some members consistently outperform the market, leading many investors to track their trades as signals.</p>
+
+<p>The data is public but arrives with a delay (up to 45 days after the trade). By the time you see the filing, the trade might already be priced in. The value is in identifying patterns: which members trade ahead of legislation, which sectors they favor, and whether their historical trades have been profitable.</p>
+
+<p>Top-performing congressional traders by historical returns:</p>
+
+<table>
+<tr><th>Member</th><th>Avg Return</th><th>Win Rate</th><th>Style</th></tr>
+<tr><td>Mark Green (R-TN)</td><td>+76.5%</td><td>100%</td><td>Large concentrated bets</td></tr>
+<tr><td>Dan Crenshaw (R-TX)</td><td>+26.9%</td><td>78%</td><td>Tech + defense</td></tr>
+<tr><td>Tommy Tuberville (R-AL)</td><td>+18.3%</td><td>65%</td><td>High volume, mixed</td></tr>
+<tr><td>Nancy Pelosi (D-CA)</td><td>+12.8%</td><td>62%</td><td>Big tech, options</td></tr>
+</table>
+
+<p>Free tools for congress trades:</p>
+<ul>
+<li><a href="/congress-trades-this-week">Market Signals Congress Tracker</a> (updated daily, free)</li>
+<li><a href="https://www.quiverquant.com/congresstrading/" rel="nofollow">Quiver Quantitative</a> (searchable database)</li>
+<li><a href="https://www.capitoltrades.com/" rel="nofollow">Capitol Trades</a> (clean interface, historical data)</li>
+</ul>
+
+<h3>3. Institutional and Dark Pool Activity</h3>
+<p>Large institutions (hedge funds, pension funds, banks) trade in dark pools to avoid moving the market price. These trades are reported to FINRA after execution, creating a delayed but valuable dataset.</p>
+
+<p>A dark pool block trade of $10M+ in a mid-cap stock is a strong signal that someone with deep pockets has conviction. Combined with options flow data (unusual volume, large sweeps), institutional activity can confirm or contradict what insiders are doing.</p>
+
+<p>Tools for institutional data:</p>
+<ul>
+<li><a href="/how-to-read-dark-pool-prints">How to Read Dark Pool Prints</a> (our guide)</li>
+<li><a href="https://unusualwhales.com/" rel="nofollow">Unusual Whales</a> (options flow + dark pool, paid)</li>
+<li><a href="https://www.barchart.com/options/unusual-activity" rel="nofollow">Barchart</a> (unusual options activity, free tier)</li>
+</ul>
+
+<h2>How to Build a Tracking System</h2>
+
+<p>The biggest mistake retail investors make is checking insider data reactively. By the time a Form 4 filing goes viral on Reddit, the trade is already crowded. The edge comes from systematic monitoring.</p>
+
+<ol>
+<li><strong>Set up daily alerts.</strong> OpenInsider has email alerts for Form 4 filings. Our <a href="/congress-trades-this-week">congress tracker</a> updates daily. Pick one or two sources and check them before market open.</li>
+<li><strong>Filter aggressively.</strong> Ignore option exercises, planned sales, and small transactions. Focus on open-market purchases over $100K by C-suite executives, and congress trades with short disclosure delays.</li>
+<li><strong>Cross-reference with other signals.</strong> An insider buy that coincides with unusual options flow or a dark pool block trade is a much stronger signal than any one of those alone.</li>
+<li><strong>Track your results.</strong> Keep a simple spreadsheet of every insider-driven trade you make. After 50 trades, you'll know which types of insider signals work for your strategy and which don't.</li>
+</ol>
+
+<h2>What Does NOT Work</h2>
+
+<ul>
+<li><strong>Copying every insider trade blindly.</strong> Most insider transactions are noise. The signal-to-noise ratio is about 1 in 20.</li>
+<li><strong>Trading congress disclosures on filing day.</strong> The 45-day delay means the information is usually priced in. The value is in pattern recognition, not trade copying.</li>
+<li><strong>Paying for "insider alerts" services without backtesting.</strong> Many paid services cherry-pick their track record. Ask for a full history of every alert, not just the winners.</li>
+</ul>
+
+<div class="cta-box">
+<p style="margin-bottom:12px;color:var(--text);font-weight:600;">Track Congress Trades for Free</p>
+<p style="margin-bottom:16px;">Updated daily with the latest congressional stock disclosures and historical performance data.</p>
+<a href="/congress-trades-this-week">See This Week's Trades</a>
+</div>
+
+<h2>FAQ</h2>
+
+<h3>Is it legal to trade based on insider filings?</h3>
+<p>Yes. Trading based on publicly available SEC filings is completely legal. What's illegal is trading on material non-public information (MNPI) before it's filed. Once a Form 4 is filed with the SEC, anyone can act on it.</p>
+
+<h3>How quickly do insider trades appear in public data?</h3>
+<p>SEC Form 4 filings must be submitted within 2 business days of the trade. Most appear on EDGAR within hours of filing. Congress trades have up to 45 days, though many members file within 1-2 weeks.</p>
+
+<h3>Do insider buys actually predict stock performance?</h3>
+<p>Academic research consistently shows that insider purchases (not sales) predict positive returns over the following 6-12 months. The strongest signal comes from cluster buys, where multiple insiders at the same company buy within a short window.</p>
+
+<p style="margin-top:32px;font-size:0.8rem;color:var(--muted);">For informational purposes only. Market Signals provides publicly available market data organized for convenience. This is not financial advice. Past market activity does not predict future results. Always do your own research.</p>
+
+</div>
+</body>
+</html>

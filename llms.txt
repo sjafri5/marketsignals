@@ -1,0 +1,17 @@
+# Market Signals
+
+> Market Signals provides free, daily-updated financial market data for retail investors. Coverage includes congressional stock trades, options flow analysis, and dark pool activity.
+
+## Core Pages
+
+- [Congress Trades This Week](https://marketsignals.pages.dev/congress-trades-this-week): Live congressional stock trading disclosures updated daily. Includes trader performance rankings, party breakdowns, and sector analysis.
+- [Options Flow Signals](https://marketsignals.pages.dev/options-flow-signals): Unusual options activity filtered for signal quality. Covers sweep orders, large block trades, and ascending fill patterns.
+- [Dark Pool Prints](https://marketsignals.pages.dev/how-to-read-dark-pool-prints): Guide to reading dark pool block trades and institutional positioning signals.
+
+## Blog Posts
+
+- [How to Track Insider Trading](https://marketsignals.pages.dev/how-to-track-insider-trading): Complete guide to SEC Form 4 filings, congressional trades, and institutional signals. Free tools and data sources.
+- [Congress Stock Trading Ban 2026](https://marketsignals.pages.dev/congress-stock-trading-ban-2026): Analysis of the proposed congressional trading ban, historical context, and why enforcement remains unlikely.
+- [PELOSI Act](https://marketsignals.pages.dev/pelosi-act-stock-trading-ban): Deep dive into the PELOSI Act and bipartisan trading ban proposals.
+- [Congressional Trading Returns](https://marketsignals.pages.dev/congressional-trading-returns-exposed): Performance data showing which members of Congress outperform the market.
+- [Free Tools for Retail Investors](https://marketsignals.pages.dev/free-tools-retail-investors): Curated list of free financial data tools for individual investors.

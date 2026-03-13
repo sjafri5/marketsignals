@@ -13,31 +13,48 @@ h1{font-size:2rem;font-weight:700;line-height:1.3;margin-bottom:8px}
 .meta{color:#71717a;margin-bottom:32px;font-size:0.9rem}
 h2{font-size:1.3rem;margin:32px 0 12px;color:#e4e4e7}
 p{margin-bottom:16px;color:#a1a1aa}
+ul,ol{margin:0 0 16px 20px;color:#a1a1aa}li{margin-bottom:8px}
 strong{color:#e4e4e7}
 .disclaimer{font-size:0.75rem;color:#52525b;border-top:1px solid #1e1e26;padding-top:24px;margin-top:40px}
 a{color:#3b82f6;text-decoration:none}a:hover{text-decoration:underline}
 .cta{display:inline-block;background:#3b82f6;color:white;padding:12px 24px;border-radius:8px;font-weight:600;margin-top:16px;text-decoration:none}
 .cta:hover{opacity:0.9;text-decoration:none}
+table{width:100%;border-collapse:collapse;margin:16px 0 24px}
+th,td{text-align:left;padding:10px 12px;border-bottom:1px solid #27272a;color:#a1a1aa;font-size:0.9rem}
+th{color:#e4e4e7;font-weight:600;background:#18181b}
+.faq-q{color:#e4e4e7;font-weight:600;margin-bottom:4px;margin-top:20px}
+.faq-a{color:#a1a1aa;margin-bottom:16px}
 </style></head><body><div class="container">
 
 <h1>What Is Unusual Options Flow (And Why Should You Care)?</h1>
-<p class="meta">Published March 1, 2026 | 5 min read</p>
+<p class="meta">Published March 1, 2026 | 7 min read</p>
+
+<p><strong>Unusual options flow refers to options trading activity that significantly deviates from a stock's normal volume, size, or pricing patterns, suggesting that large or informed traders may be positioning ahead of a significant price move.</strong> Options contracts, which are regulated by the <a href="https://www.sec.gov/">SEC</a> and cleared through the <a href="https://www.theocc.com/">Options Clearing Corporation (OCC)</a>, give the holder the right to buy (call) or sell (put) 100 shares of an underlying stock at a set price before a specific date. According to OCC data, total U.S. options volume reached approximately 11.1 billion contracts in 2023, up from 7.5 billion in 2020. Within that massive volume, unusual activity stands out as a potential signal of informed conviction.</p>
 
 <p>Every trading day, millions of options contracts change hands. Most of it is noise. Market makers hedging, retail traders buying single contracts, algorithms rebalancing. But somewhere in that noise, there are signals worth paying attention to.</p>
-
-<p>Unusual options flow is what happens when someone makes a large, aggressive bet that stands out from the background noise. A single trader buying $2 million worth of call options on a stock that normally trades $50K in daily options volume. That's unusual. And it often means something.</p>
 
 <h2>What Makes Flow "Unusual"</h2>
 
 <p>Not all big trades are created equal. Here's what separates signal from noise:</p>
 
-<p><strong>Sweeps vs. blocks.</strong> A sweep order is aggressive. The buyer is paying the ask price across multiple exchanges simultaneously, which means they want in NOW and don't care about getting the best price. A block trade is negotiated privately. Both are worth watching, but sweeps signal more urgency.</p>
+<table>
+<tr><th>Signal Type</th><th>What It Means</th><th>Strength</th></tr>
+<tr><td>Sweep order</td><td>Buyer hits the ask across multiple exchanges simultaneously. Wants in NOW, doesn't care about best price.</td><td>High urgency</td></tr>
+<tr><td>Block trade</td><td>Negotiated privately, single large fill. Deliberate positioning.</td><td>High conviction</td></tr>
+<tr><td>Ascending fills</td><td>Same buyer returns repeatedly, paying higher prices each time ($2.10, $2.25, $2.40). Not price-sensitive.</td><td>Very high conviction</td></tr>
+<tr><td>Volume > open interest</td><td>Day's volume exceeds existing open interest on a strike. New money entering, not existing positions closing.</td><td>High (new positioning)</td></tr>
+<tr><td>Multi-leg strategy</td><td>Spreads, straddles, or other hedged structures.</td><td>Lower (often hedging)</td></tr>
+</table>
 
-<p><strong>Ascending fills.</strong> This is when the same buyer comes back repeatedly, paying a higher price each time. First fill at $2.10, next at $2.25, then $2.40. They're not price-sensitive. They believe the move is coming and they want size before it does.</p>
+<h2>Key Options Market Statistics</h2>
 
-<p><strong>Premium size.</strong> A $50K options bet is interesting. A $500K bet is notable. A $2M bet on a stock with no upcoming catalyst on the calendar? That's worth investigating. Large premium relative to normal volume is the first filter.</p>
-
-<p><strong>Trade count.</strong> One big trade could be a hedge. But 12 sweeps in the same direction on the same strike in a single session? That's conviction, whether from one trader splitting an order or multiple informed participants reaching the same conclusion.</p>
+<ul>
+<li><strong>Total U.S. options volume (2023):</strong> Approximately 11.1 billion contracts, per <a href="https://www.theocc.com/">OCC data</a>.</li>
+<li><strong>Growth rate:</strong> Options volume increased roughly 48% from 2020 (7.5 billion contracts) to 2023, driven by retail participation and zero-day-to-expiration (0DTE) options.</li>
+<li><strong>Clearing:</strong> All U.S. listed options are cleared through the <a href="https://www.theocc.com/">Options Clearing Corporation (OCC)</a>, which acts as the central counterparty.</li>
+<li><strong>Regulatory oversight:</strong> Options exchanges are regulated by the <a href="https://www.sec.gov/">SEC</a>. Options trading activity is monitored for manipulation by both the SEC and <a href="https://www.finra.org/">FINRA</a>.</li>
+<li><strong>Major exchanges:</strong> <a href="https://www.cboe.com/">Cboe</a>, NYSE Arca Options, NASDAQ Options, MIAX, and ISE, among others.</li>
+</ul>
 
 <h2>Why It Matters</h2>
 
@@ -47,15 +64,31 @@ a{color:#3b82f6;text-decoration:none}a:hover{text-decoration:underline}
 
 <p>The key is pattern recognition over time. A single unusual trade on any given stock is a data point. But when you see repeated unusual activity in the same sector, or consistent directional bets leading into earnings, or large puts appearing right before negative news, patterns emerge.</p>
 
-<h2>What to Watch For</h2>
+<h2>What to Watch For: A Checklist</h2>
 
-<p><strong>Single-leg bets.</strong> Multi-leg strategies (spreads, straddles) are usually hedging. A straight call or put purchase is a directional bet. Filter for single-leg trades to find pure conviction plays.</p>
+<ol>
+<li><strong>Single-leg directional bets.</strong> Multi-leg strategies (spreads, straddles) are usually hedging. A straight call or put purchase is a directional bet. Filter for single-leg trades to find pure conviction plays.</li>
+<li><strong>Near-term expiration (7-30 days).</strong> These options have high gamma, meaning the position becomes very directional very fast. Someone buying weekly calls is making a short-term directional bet, not a hedge.</li>
+<li><strong>Sector clustering.</strong> When unusual bullish flow appears across multiple defense stocks on the same day, that's not coincidence. Sector-wide flow clustering often precedes sector-wide moves.</li>
+<li><strong>Volume exceeding open interest.</strong> If the day's volume on a specific strike exceeds the existing open interest, that's new money entering the trade, not existing positions being closed. New money is more informative than position management.</li>
+<li><strong>Premium size relative to normal volume.</strong> A $50K options bet is interesting. A $500K bet is notable. A $2M bet on a stock with no upcoming catalyst on the calendar? That's worth investigating.</li>
+<li><strong>Correlation with dark pool prints.</strong> When unusual call sweeps appear alongside dark pool accumulation in the same stock, the combined signal is significantly stronger than either one alone.</li>
+</ol>
 
-<p><strong>Near-term expiration.</strong> Options expiring in 7-30 days are interesting because they have high gamma (the position becomes very directional very fast). Someone buying weekly calls is making a short-term directional bet, not a hedge.</p>
+<h2>Common Options Flow Terminology</h2>
 
-<p><strong>Sector clustering.</strong> When unusual bullish flow appears across multiple defense stocks on the same day, that's not coincidence. Sector-wide flow clustering often precedes sector-wide moves.</p>
-
-<p><strong>Flow vs. open interest.</strong> If the day's volume on a specific strike exceeds the existing open interest, that's new money entering the trade, not existing positions being closed. New money is more informative than position management.</p>
+<table>
+<tr><th>Term</th><th>Definition</th></tr>
+<tr><td>Call option</td><td>Gives the holder the right to buy 100 shares at a specific price (strike) before expiration.</td></tr>
+<tr><td>Put option</td><td>Gives the holder the right to sell 100 shares at a specific price (strike) before expiration.</td></tr>
+<tr><td>Strike price</td><td>The price at which the option holder can buy (call) or sell (put) the underlying stock.</td></tr>
+<tr><td>Premium</td><td>The price paid to buy the options contract.</td></tr>
+<tr><td>Open interest</td><td>The total number of outstanding (unsettled) options contracts for a given strike and expiration.</td></tr>
+<tr><td>Sweep</td><td>An order that simultaneously routes to multiple exchanges to get filled quickly at the best available prices.</td></tr>
+<tr><td>VWAP</td><td>Volume Weighted Average Price. A benchmark that shows the average price a security traded at throughout the day, weighted by volume.</td></tr>
+<tr><td>Gamma</td><td>A measure of how fast an option's delta (directional exposure) changes as the underlying stock moves. Higher gamma means more directional sensitivity.</td></tr>
+<tr><td>0DTE</td><td>Zero days to expiration. Options that expire on the same day they are traded, offering maximum leverage and risk.</td></tr>
+</table>
 
 <h2>The Limits</h2>
 
@@ -74,6 +107,29 @@ a{color:#3b82f6;text-decoration:none}a:hover{text-decoration:underline}
 <p>MarketSignals applies a quality score to every alert based on multiple factors: fill pattern (ascending fills score higher), premium size relative to the stock's average volume, number of repeated hits, and whether the flow aligns with technical levels or sector trends.</p>
 
 <p>The free tier gives you a daily summary of the highest-scoring signals. Pro subscribers get the full dataset with individual trade details, and Elite adds dark pool block trades for a complete picture of institutional positioning.</p>
+
+<h2>Frequently Asked Questions</h2>
+
+<p class="faq-q">Q: What is unusual options flow?</p>
+<p class="faq-a">A: Unusual options flow is options trading activity that stands out from normal patterns due to abnormally large trade sizes, high volume relative to open interest, or aggressive execution methods like sweep orders. It can signal that large or informed traders are positioning ahead of a significant price move. The data comes from publicly reported trades on regulated options exchanges overseen by the <a href="https://www.sec.gov/">SEC</a>.</p>
+
+<p class="faq-q">Q: Is following options flow a reliable trading strategy?</p>
+<p class="faq-a">A: Options flow is one signal among many and should not be used in isolation. Individual unusual trades can be hedges, portfolio adjustments, or parts of multi-leg strategies that aren't visible in the data. The value comes from aggregating flow signals over time and combining them with other data points like dark pool activity, technical analysis, and fundamental research. No single signal is reliably predictive on its own.</p>
+
+<p class="faq-q">Q: What is a sweep order in options trading?</p>
+<p class="faq-a">A: A sweep order is an options order that routes simultaneously to multiple exchanges to get filled as quickly as possible. Unlike a standard order that waits for the best price on one exchange, a sweep prioritizes speed and size over price. Sweep orders are generally considered a signal of urgency and conviction because the trader is willing to pay higher prices across exchanges to build their position immediately.</p>
+
+<p class="faq-q">Q: How do I find unusual options activity?</p>
+<p class="faq-a">A: Unusual options activity is identified by comparing current trading volume, trade sizes, and pricing patterns against historical norms for each stock. Key filters include: trades where daily volume exceeds open interest, large single-leg purchases (not multi-leg hedges), sweep orders, ascending fill patterns, and premium sizes that significantly exceed normal daily options volume. Services like MarketSignals automate this screening and score each alert by signal quality.</p>
+
+<p class="faq-q">Q: What is the difference between a sweep and a block trade?</p>
+<p class="faq-a">A: A sweep order is routed aggressively across multiple exchanges simultaneously, hitting ask prices to get filled quickly. It's a public market order. A block trade is negotiated privately between two parties (often through a broker) and reported after execution. Both signal large, potentially informed positioning, but sweeps indicate more urgency because the trader is paying up for speed, while blocks suggest a more deliberate, pre-arranged transaction.</p>
+
+<p class="faq-q">Q: Can options flow predict stock price movements?</p>
+<p class="faq-a">A: Options flow data can sometimes precede stock price movements, but it does not reliably predict them. Large options trades may reflect insider knowledge, institutional research, hedging activity, or simply contrarian bets. Academic research has found that options markets can lead stock price discovery in some cases, particularly around corporate events. However, many unusual trades do not result in the expected move, and the data should be treated as one input in a broader analysis framework.</p>
+
+<p class="faq-q">Q: What does it mean when options volume exceeds open interest?</p>
+<p class="faq-a">A: When the daily trading volume on a specific options strike and expiration exceeds the existing open interest, it indicates that new positions are being opened rather than existing ones being closed. This is significant because new money entering a trade is generally more informative than position management. If volume exceeds open interest on call options, for example, it suggests new bullish bets are being placed.</p>
 
 <p class="disclaimer"><em>This is not financial advice. Options trading involves significant risk of loss. MarketSignals provides publicly available market data organized for convenience. Past flow patterns do not predict future results. Always do your own research.</em></p>
 
